@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("kapt") version "1.9.22"
 }
 
 android {
@@ -75,7 +76,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.dagger)
-    annotationProcessor(libs.dagger.compiler)
+    kapt(libs.dagger.compiler)
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
