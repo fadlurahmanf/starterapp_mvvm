@@ -1,8 +1,8 @@
 package com.fadlurahmanf.starterappmvvm.others.di.components
 
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.feature_api_call.others.di.FeatureApiCallModule
-import com.fadlurahmanf.starterappmvvm.feature_api_call.others.di.FeatureApiCallSubComponent
+import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
+import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.others.di.modules.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         NetworkModule::class,
-        FeatureApiCallModule::class,
+        ExampleModule::class,
     ]
 )
 interface ApplicationComponent {
@@ -21,5 +21,5 @@ interface ApplicationComponent {
         fun create(@BindsInstance context: Context): ApplicationComponent
     }
 
-    fun featureApiCallComponent(): FeatureApiCallSubComponent.Factory
+    fun exampleSubComponentFactory(): ExampleSubComponent.Factory
 }

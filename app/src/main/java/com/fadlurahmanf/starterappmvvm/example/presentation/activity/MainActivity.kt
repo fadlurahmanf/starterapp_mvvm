@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.feature_api_call.presentation.activity
+package com.fadlurahmanf.starterappmvvm.example.presentation.activity
 
 import android.os.Bundle
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityMainBinding
