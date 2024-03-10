@@ -2,25 +2,25 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.databinding.ActivityApiCallBinding
+import com.fadlurahmanf.starterappmvvm.databinding.ActivityListExampleBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ApiCallViewModel
-import javax.inject.Inject
 
-class ApiCallActivity :
-    BaseExampleActivity<ActivityApiCallBinding>(ActivityApiCallBinding::inflate),
+class ListExampleActivity :
+    BaseExampleActivity<ActivityListExampleBinding>(ActivityListExampleBinding::inflate),
     ListExampleAdapter.Callback {
 
-    @Inject
-    lateinit var viewModel: ApiCallViewModel
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "API Generate Guest Token",
-            desc = "Generate Guest Token",
-            enum = "GENERATE_GUEST_TOKEN"
+            title = "API Call",
+            desc = "List of how to fetch API",
+            enum = "API_CALL"
         )
     )
 
@@ -43,9 +43,11 @@ class ApiCallActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
-            "GENERATE_GUEST_TOKEN" -> {
-
+            "API_CALL" -> {
+                val intent = Intent(this, ApiCallActivity::class.java)
+                startActivity(intent)
             }
         }
     }
+
 }

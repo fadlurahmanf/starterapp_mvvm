@@ -1,6 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.example.others.di
 
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.ApiCallActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.ListExampleActivity
 import dagger.Subcomponent
 
 @Subcomponent
@@ -10,5 +11,6 @@ interface ExampleSubComponent {
         fun create(): ExampleSubComponent
     }
 
-    fun inject(apiCallActivity: ApiCallActivity)
+    fun inject(activity: ListExampleActivity)
+    fun inject(activity: ApiCallActivity)
 }
