@@ -2,10 +2,6 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityListExampleBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
@@ -21,6 +17,12 @@ class ListExampleActivity :
             title = "API Call",
             desc = "List of how to fetch API",
             enum = "API_CALL"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Test Crashlytics",
+            desc = "Force Crash to test Firebase Crashlytics",
+            enum = "FORCE_CRASH_CRASHLYTICS"
         )
     )
 
@@ -46,6 +48,10 @@ class ListExampleActivity :
             "API_CALL" -> {
                 val intent = Intent(this, ApiCallActivity::class.java)
                 startActivity(intent)
+            }
+
+            "FORCE_CRASH_CRASHLYTICS" -> {
+                throw RuntimeException("Test Crash Firebase Crashlytics")
             }
         }
     }

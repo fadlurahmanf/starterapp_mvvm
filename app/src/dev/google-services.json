@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "411788768201",
+    "project_id": "kotlin-starter-app-mvvm",
+    "storage_bucket": "kotlin-starter-app-mvvm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411788768201:android:7d4ea763f1c39e16882e18",
+        "android_client_info": {
+          "package_name": "com.fadlurahmanf.starterappmvvm.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx5_VHHfwqjptx9_Zq93dPXAbEHCabBWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt") version "1.9.22"
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -13,7 +15,7 @@ android {
         minSdk = 19
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.0.1"
         multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -48,14 +50,22 @@ android {
     flavorDimensions.add("environment")
 
     productFlavors {
+        create("fake") {
+            dimension = "environment"
+            buildConfigField("String", "BASE_MERCHANT_URL", "\"https://fake_merchant.bankmas.my.id\"")
+            applicationIdSuffix = ".fake"
+        }
+
         create("dev") {
             dimension = "environment"
             buildConfigField("String", "BASE_MERCHANT_URL", "\"https://merchant.bankmas.my.id\"")
+            applicationIdSuffix = ".dev"
         }
 
         create("staging") {
             dimension = "environment"
             buildConfigField("String", "BASE_MERCHANT_URL", "\"https://merchant.bankmas.link\"")
+            applicationIdSuffix = ".staging"
         }
 
         create("prod") {
@@ -85,5 +95,9 @@ dependencies {
     implementation(libs.rxandroid)
     implementation(libs.rxjava)
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.google.firebase.analytics)
 }
