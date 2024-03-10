@@ -1,31 +1,26 @@
-package com.fadlurahmanf.starterappmvvm.example.presentation.activity
+package com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call
 
-import android.content.Intent
 import android.os.Bundle
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.databinding.ActivityListExampleBinding
+import com.fadlurahmanf.starterappmvvm.databinding.ActivityApiCallBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
+import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ApiCallViewModel
+import javax.inject.Inject
 
-class ListExampleActivity :
-    BaseExampleActivity<ActivityListExampleBinding>(ActivityListExampleBinding::inflate),
+class ApiCallActivity :
+    BaseExampleActivity<ActivityApiCallBinding>(ActivityApiCallBinding::inflate),
     ListExampleAdapter.Callback {
 
+    @Inject
+    lateinit var viewModel: ApiCallViewModel
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "API Call",
-            desc = "List of how to fetch API",
-            enum = "API_CALL"
-        ),
-        FeatureModel(
-            featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Firebase Crashlytics",
-            desc = "features of Firebase Crashlytics",
-            enum = "FIREBASE_CRASHLYTICS"
+            title = "API Generate Guest Token",
+            desc = "Generate Guest Token",
+            enum = "GENERATE_GUEST_TOKEN"
         )
     )
 
@@ -48,16 +43,9 @@ class ListExampleActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
-            "API_CALL" -> {
-                val intent = Intent(this, ApiCallActivity::class.java)
-                startActivity(intent)
-            }
+            "GENERATE_GUEST_TOKEN" -> {
 
-            "FIREBASE_CRASHLYTICS" -> {
-                val intent = Intent(this, FirebaseCrashlyticsActivity::class.java)
-                startActivity(intent)
             }
         }
     }
-
 }

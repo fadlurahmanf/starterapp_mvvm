@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.fadlurahmanf.starterappmvvm.dev" />
+                  <option name="mobileSdkAppId" value="1:411788768201:android:7d4ea763f1c39e16882e18" />
+                  <option name="projectId" value="kotlin-starter-app-mvvm" />
+                  <option name="projectNumber" value="411788768201" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

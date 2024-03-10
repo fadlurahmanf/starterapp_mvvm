@@ -1,26 +1,26 @@
-package com.fadlurahmanf.starterappmvvm.example.presentation.activity
+package com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics
 
-import android.content.Intent
 import android.os.Bundle
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.databinding.ActivityApiCallBinding
+import com.fadlurahmanf.starterappmvvm.databinding.ActivityFirebaseCrashlyticsBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
+import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ApiCallViewModel
-import javax.inject.Inject
 
-class ApiCallActivity :
-    BaseExampleActivity<ActivityApiCallBinding>(ActivityApiCallBinding::inflate),
+class FirebaseCrashlyticsActivity : BaseExampleActivity<ActivityFirebaseCrashlyticsBinding>(ActivityFirebaseCrashlyticsBinding::inflate),
     ListExampleAdapter.Callback {
-
-    @Inject
-    lateinit var viewModel: ApiCallViewModel
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "API Generate Guest Token",
-            desc = "Generate Guest Token",
-            enum = "GENERATE_GUEST_TOKEN"
+            title = "Test Crashlytics",
+            desc = "Force Crash to test Firebase Crashlytics",
+            enum = "FORCE_CRASH_CRASHLYTICS"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Set Firebase Crashlytics ID",
+            desc = "Set Firebase Crashlytics ID",
+            enum = "SET_FIREBASE_CRASHLYTICS_ID"
         )
     )
 
@@ -43,9 +43,14 @@ class ApiCallActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
-            "GENERATE_GUEST_TOKEN" -> {
+            "FORCE_CRASH_CRASHLYTICS" -> {
+                throw RuntimeException("Test Crash Firebase Crashlytics")
+            }
+
+            "SET_FIREBASE_CRASHLYTICS_ID" -> {
 
             }
         }
     }
+
 }

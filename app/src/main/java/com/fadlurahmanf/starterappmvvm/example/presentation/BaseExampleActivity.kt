@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.example.presentation.activity
+package com.fadlurahmanf.starterappmvvm.example.presentation
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
