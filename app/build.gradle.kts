@@ -84,4 +84,6 @@ dependencies {
 
     implementation(libs.rxandroid)
     implementation(libs.rxjava)
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 }

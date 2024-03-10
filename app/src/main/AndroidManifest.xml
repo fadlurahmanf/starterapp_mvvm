@@ -14,7 +14,7 @@
         android:theme="@style/Theme.StarterAppMVVM"
         tools:targetApi="31">
         <activity
-            android:name=".example.presentation.activity.MainActivity"
+            android:name=".example.presentation.activity.ApiCallActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

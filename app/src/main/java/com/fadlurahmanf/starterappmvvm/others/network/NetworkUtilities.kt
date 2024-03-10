@@ -14,7 +14,7 @@ class NetworkUtilities {
     }
 
     fun createGuestIdentityNetwork(okHttpClient: OkHttpClient): IdentityApi {
-        return Retrofit.Builder().baseUrl("${merchantBaseUrl}/identity-service")
+        return Retrofit.Builder().baseUrl("${merchantBaseUrl}/identity-service/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

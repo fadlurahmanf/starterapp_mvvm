@@ -8,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface IdentityApi {
-    @POST("auth/guest-token")
+    @POST("guest/session/create")
     fun generateGuestToken(
         @Body generateGuestTokenRequest: GenerateGuestTokenRequest
     ): Observable<MerchantBaseResponse<GenerateGuestTokenResponse>>

@@ -22,8 +22,11 @@ abstract class BaseActivity<VB : ViewBinding>(
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         onBaseBindingActivity()
+        onBaseCreateSubComponent()
         onBaseCreate(savedInstanceState)
     }
+
+    abstract fun onBaseCreateSubComponent()
 
     open fun onBaseBindingActivity() {
         _binding = inflater.invoke(layoutInflater)
