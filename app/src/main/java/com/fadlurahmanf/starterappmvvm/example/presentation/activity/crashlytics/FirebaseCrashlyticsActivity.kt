@@ -1,14 +1,22 @@
 package com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics
 
 import android.os.Bundle
+import android.util.Log
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityFirebaseCrashlyticsBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
+import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
+import javax.inject.Inject
 
-class FirebaseCrashlyticsActivity : BaseExampleActivity<ActivityFirebaseCrashlyticsBinding>(ActivityFirebaseCrashlyticsBinding::inflate),
+class FirebaseCrashlyticsActivity :
+    BaseExampleActivity<ActivityFirebaseCrashlyticsBinding>(ActivityFirebaseCrashlyticsBinding::inflate),
     ListExampleAdapter.Callback {
+
+    @Inject
+    lateinit var viewModel: ExampleViewModel
+
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
@@ -48,7 +56,9 @@ class FirebaseCrashlyticsActivity : BaseExampleActivity<ActivityFirebaseCrashlyt
             }
 
             "SET_FIREBASE_CRASHLYTICS_ID" -> {
-
+                val deviceId = viewModel.getUserId(this)
+                Log.d("BaseLoggerTAG", "DEVICE ID: $deviceId")
+                firebaseCrashlytics.setUserId(deviceId)
             }
         }
     }

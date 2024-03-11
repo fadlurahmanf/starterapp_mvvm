@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewbinding.ViewBinding
+import com.fadlurahmanf.starterappmvvm.BaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 typealias InflateActivity<T> = (LayoutInflater) -> T
 
@@ -23,10 +25,17 @@ abstract class BaseActivity<VB : ViewBinding>(
         enableEdgeToEdge()
         onBaseBindingActivity()
         onBaseCreateSubComponent()
+        setupFirebaseCrashlytics()
         onBaseCreate(savedInstanceState)
     }
 
     abstract fun onBaseCreateSubComponent()
+
+    lateinit var firebaseCrashlytics: FirebaseCrashlytics
+
+    open fun setupFirebaseCrashlytics() {
+        firebaseCrashlytics = (applicationContext as BaseApp).firebaseCrashlytics
+    }
 
     open fun onBaseBindingActivity() {
         _binding = inflater.invoke(layoutInflater)
