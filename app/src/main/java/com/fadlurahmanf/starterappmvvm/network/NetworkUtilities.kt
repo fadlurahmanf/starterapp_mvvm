@@ -1,7 +1,7 @@
-package com.fadlurahmanf.starterappmvvm.others.network
+package com.fadlurahmanf.starterappmvvm.network
 
 import com.fadlurahmanf.starterappmvvm.BuildConfig
-import com.fadlurahmanf.starterappmvvm.others.network.api.IdentityApi
+import com.fadlurahmanf.starterappmvvm.network.api.IdentityApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

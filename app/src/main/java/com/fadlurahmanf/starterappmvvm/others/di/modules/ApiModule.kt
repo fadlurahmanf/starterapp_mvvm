@@ -1,7 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.others.di.modules
 
-import com.fadlurahmanf.starterappmvvm.others.network.NetworkUtilities
-import com.fadlurahmanf.starterappmvvm.others.network.api.IdentityApi
+import com.fadlurahmanf.starterappmvvm.network.NetworkUtilities
+import com.fadlurahmanf.starterappmvvm.network.api.IdentityApi
 import dagger.Module
 import dagger.Provides
 

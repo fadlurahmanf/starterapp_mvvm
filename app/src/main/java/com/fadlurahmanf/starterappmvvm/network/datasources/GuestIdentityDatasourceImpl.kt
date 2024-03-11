@@ -1,9 +1,9 @@
-package com.fadlurahmanf.starterappmvvm.others.network.datasources
+package com.fadlurahmanf.starterappmvvm.network.datasources
 
 import com.fadlurahmanf.starterappmvvm.others.exception.BaseExceptionUtility
-import com.fadlurahmanf.starterappmvvm.others.network.api.IdentityApi
-import com.fadlurahmanf.starterappmvvm.others.network.dto.request.guest_token.GenerateGuestTokenRequest
-import com.fadlurahmanf.starterappmvvm.others.network.dto.response.guest_token.GenerateGuestTokenResponse
+import com.fadlurahmanf.starterappmvvm.network.api.IdentityApi
+import com.fadlurahmanf.starterappmvvm.network.dto.request.guest_token.GenerateGuestTokenRequest
+import com.fadlurahmanf.starterappmvvm.network.dto.response.guest_token.GenerateGuestTokenResponse
 import io.reactivex.rxjava3.core.Observable
 import java.util.UUID
 import javax.inject.Inject

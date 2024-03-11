@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.others.network.dto.response.others
+package com.fadlurahmanf.starterappmvvm.network.dto.response.others
 
 data class MerchantBaseResponse<T>(
     val status: Boolean?,
