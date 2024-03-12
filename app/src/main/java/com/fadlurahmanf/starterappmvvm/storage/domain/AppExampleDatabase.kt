@@ -1,29 +1,29 @@
-package com.fadlurahmanf.starterappmvvm.storage.others
+package com.fadlurahmanf.starterappmvvm.storage.domain
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppEntity
+import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppExampleEntity
 
 @Database(
     entities = [
-        AppEntity::class
-    ], version = BaseDatabase.VERSION,
+        AppExampleEntity::class
+    ], version = AppExampleDatabase.VERSION,
     exportSchema = true
 )
-abstract class BaseDatabase : RoomDatabase() {
+abstract class AppExampleDatabase : RoomDatabase() {
     companion object {
         const val VERSION = 1
 
         @Volatile
-        private var INSTANCE: BaseDatabase? = null
-        fun getDatabase(context: Context): BaseDatabase {
+        private var INSTANCE: AppExampleDatabase? = null
+        fun getDatabase(context: Context): AppExampleDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    BaseDatabase::class.java,
-                    "appDatabase"
+                    AppExampleDatabase::class.java,
+                    "appExampleDatabase"
                 )
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
