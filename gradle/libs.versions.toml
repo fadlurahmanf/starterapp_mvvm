@@ -13,12 +13,16 @@ material = "1.11.0"
 activity = "1.8.2"
 constraintlayout = "2.1.4"
 retrofit = "2.9.0"
+roomRuntime = "2.6.1"
+roomRxjava3 = "2.6.1"
 rxandroid = "3.0.2"
 rxjava = "3.1.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
@@ -34,6 +38,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomRxjava3" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 

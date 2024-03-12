@@ -9,7 +9,6 @@ class AuthenticationRepositoryImpl @Inject constructor(
 ) : AuthenticationRepository {
     override fun generateGuestToken(): Observable<Boolean> {
         return guestIdentityDatasourceImpl.generateGuestToken().map {
-
             true
         }
     }

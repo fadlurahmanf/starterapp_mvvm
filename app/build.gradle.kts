@@ -100,4 +100,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
     implementation(libs.google.firebase.analytics)
+
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.room.rxjava3)
 }
