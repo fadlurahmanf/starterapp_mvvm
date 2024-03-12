@@ -104,4 +104,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.room.rxjava3)
+
+    // ed25519
+    implementation(libs.bcprov.jdk15on)
 }

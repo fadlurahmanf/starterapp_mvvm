@@ -1,6 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.others.di.components
 
 import android.content.Context
+import com.fadlurahmanf.starterappmvvm.crypto.helper.di.CryptoModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.others.di.modules.NetworkModule
@@ -12,6 +13,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        CryptoModule::class,
         NetworkModule::class,
         PlatformModule::class,
         ExampleModule::class,

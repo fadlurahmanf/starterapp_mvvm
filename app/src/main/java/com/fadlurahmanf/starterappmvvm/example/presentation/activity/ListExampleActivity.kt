@@ -8,6 +8,7 @@ import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.AesCryptoActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 
 class ListExampleActivity :
@@ -26,7 +27,13 @@ class ListExampleActivity :
             title = "Firebase Crashlytics",
             desc = "features of Firebase Crashlytics",
             enum = "FIREBASE_CRASHLYTICS"
-        )
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Crypto",
+            desc = "features of crypto",
+            enum = "CRYPTO"
+        ),
     )
 
     override fun onBaseExampleInjectActivity() {
@@ -55,6 +62,11 @@ class ListExampleActivity :
 
             "FIREBASE_CRASHLYTICS" -> {
                 val intent = Intent(this, FirebaseCrashlyticsActivity::class.java)
+                startActivity(intent)
+            }
+
+            "CRYPTO" -> {
+                val intent = Intent(this, AesCryptoActivity::class.java)
                 startActivity(intent)
             }
         }

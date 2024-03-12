@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".example.presentation.activity.crypto.AesCryptoActivity">
+
+    <TextView
+        android:id="@+id/tvGeneratedKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KEY:..."
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvInputText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TEXT: ..."
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvEncryptedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="ENCRYPTED: ..."
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tvDecryptedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:text="DECRYPTED: ..."
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>
