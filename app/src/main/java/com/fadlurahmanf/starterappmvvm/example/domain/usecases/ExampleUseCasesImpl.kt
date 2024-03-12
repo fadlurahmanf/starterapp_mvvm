@@ -9,7 +9,7 @@ import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppExampleEntity
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class ExampleUseCasesImpl @Inject constructor(
+open class ExampleUseCasesImpl @Inject constructor(
     private val exampleRepository: ExampleRepository,
     private val platformRepository: PlatformRepository,
     private val rsaRepository: CryptoRSARepository,

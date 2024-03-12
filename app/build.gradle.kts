@@ -52,25 +52,33 @@ android {
     productFlavors {
         create("fake") {
             dimension = "environment"
-            buildConfigField("String", "BASE_MERCHANT_URL", "\"https://fake_merchant.bankmas.my.id\"")
+            buildConfigField(
+                "String",
+                "BASE_MERCHANT_URL",
+                "\"https://fake_merchant.bankmas.my.id\""
+            )
             applicationIdSuffix = ".fake"
+            resValue("string", "app_name", "Starter App MVVM Fake")
         }
 
         create("dev") {
             dimension = "environment"
             buildConfigField("String", "BASE_MERCHANT_URL", "\"https://merchant.bankmas.my.id\"")
             applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "Starter App MVVM Dev")
         }
 
         create("staging") {
             dimension = "environment"
             buildConfigField("String", "BASE_MERCHANT_URL", "\"https://merchant.bankmas.link\"")
             applicationIdSuffix = ".staging"
+            resValue("string", "app_name", "Starter App MVVM Staging")
         }
 
         create("prod") {
             dimension = "environment"
             buildConfigField("String", "BASE_MERCHANT_URL", "\"https://merchant.bankmas.net\"")
+            resValue("string", "app_name", "Starter App MVVM")
         }
     }
 }
