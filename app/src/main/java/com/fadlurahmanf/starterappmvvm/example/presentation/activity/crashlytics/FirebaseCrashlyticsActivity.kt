@@ -8,6 +8,7 @@ import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
+import com.fadlurahmanf.starterappmvvm.others.constant.AppConstant
 import javax.inject.Inject
 
 class FirebaseCrashlyticsActivity :
@@ -57,7 +58,7 @@ class FirebaseCrashlyticsActivity :
 
             "SET_FIREBASE_CRASHLYTICS_ID" -> {
                 val deviceId = viewModel.getUserId(this)
-                Log.d("BaseLoggerTAG", "DEVICE ID: $deviceId")
+                Log.d(AppConstant.LOGGER_TAG, "DEVICE ID: $deviceId")
                 firebaseCrashlytics.setUserId(deviceId)
             }
         }

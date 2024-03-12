@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.fadlurahmanf.starterappmvvm.storage.data.dao.AppExampleDao
 import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppExampleEntity
+import com.fadlurahmanf.starterappmvvm.storage.others.AppDbConstant
 
 @Database(
     entities = [
@@ -13,6 +15,8 @@ import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppExampleEntity
     exportSchema = true
 )
 abstract class AppExampleDatabase : RoomDatabase() {
+    abstract fun appExampleDao(): AppExampleDao
+
     companion object {
         const val VERSION = 1
 
@@ -23,7 +27,7 @@ abstract class AppExampleDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppExampleDatabase::class.java,
-                    "appExampleDatabase"
+                    AppDbConstant.APP_EXAMPLE_DB_NAME
                 )
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
