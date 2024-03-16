@@ -11,6 +11,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.Ap
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.AesCryptoActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.StorageActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.WorkerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.others.constant.AppConstant
@@ -56,6 +57,12 @@ class ListExampleActivity :
             desc = "features of storage",
             enum = "STORAGE"
         ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Worker Manager",
+            desc = "features of Work Manager",
+            enum = "WORK_MANAGER"
+        ),
     )
 
     override fun onBaseExampleInjectActivity() {
@@ -74,11 +81,12 @@ class ListExampleActivity :
         adapter.setHasStableIds(true)
         binding.rv.adapter = adapter
 
-        viewModel.firstLaunchState.observe(this){
-            when(it){
+        viewModel.firstLaunchState.observe(this) {
+            when (it) {
                 is AppState.SUCCESS -> {
                     Log.d(AppConstant.LOGGER_TAG, "FIRST LAUNCH MODEL: ${it.data}")
                 }
+
                 else -> {}
             }
         }
@@ -107,6 +115,11 @@ class ListExampleActivity :
 
             "STORAGE" -> {
                 val intent = Intent(this, StorageActivity::class.java)
+                startActivity(intent)
+            }
+
+            "WORK_MANAGER" -> {
+                val intent = Intent(this, WorkerActivity::class.java)
                 startActivity(intent)
             }
         }

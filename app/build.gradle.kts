@@ -115,4 +115,6 @@ dependencies {
 
     // ed25519
     implementation(libs.bcprov.jdk15on)
+
+    implementation(libs.androidx.work.runtime.ktx)
 }

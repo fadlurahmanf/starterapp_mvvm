@@ -8,7 +8,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.fadlurahmanf.starterappmvvm.dev" />
+                  <option name="appId" value="com.fadlurahmanf.starterappmvvm.fake" />
                   <option name="mobileSdkAppId" value="1:411788768201:android:7d4ea763f1c39e16882e18" />
                   <option name="projectId" value="kotlin-starter-app-mvvm" />
                   <option name="projectNumber" value="411788768201" />
