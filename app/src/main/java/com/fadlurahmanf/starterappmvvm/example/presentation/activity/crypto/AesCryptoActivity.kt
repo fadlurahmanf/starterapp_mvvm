@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityCryptoBinding
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
+import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import javax.inject.Inject
 
 class AesCryptoActivity :

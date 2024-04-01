@@ -6,7 +6,6 @@ import com.fadlurahmanf.starterappmvvm.databinding.ActivityApiCallBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ApiCallViewModel
 import javax.inject.Inject
 
 class ApiCallActivity :

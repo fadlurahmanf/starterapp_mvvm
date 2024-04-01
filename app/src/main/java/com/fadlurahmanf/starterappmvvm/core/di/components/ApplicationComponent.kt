@@ -1,10 +1,11 @@
 package com.fadlurahmanf.starterappmvvm.core.di.components
 
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.crypto.helper.di.CryptoModule
+import com.fadlurahmanf.starterappmvvm.crypto.others.CryptoModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.core.di.modules.NetworkModule
+import com.fadlurahmanf.starterappmvvm.core.notification.others.NotificationModule
 import com.fadlurahmanf.starterappmvvm.platform.data.others.di.PlatformModule
 import com.fadlurahmanf.starterappmvvm.storage.others.di.StorageModule
 import dagger.BindsInstance
@@ -16,6 +17,7 @@ import javax.inject.Singleton
     modules = [
         CryptoModule::class,
         PlatformModule::class,
+        NotificationModule::class,
         StorageModule::class,
         NetworkModule::class,
         ExampleModule::class,

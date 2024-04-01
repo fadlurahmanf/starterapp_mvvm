@@ -13,9 +13,10 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.AesC
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.StorageActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.WorkerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
+import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.state.general.AppState
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import javax.inject.Inject
 
 class ListExampleActivity :
@@ -62,6 +63,12 @@ class ListExampleActivity :
             title = "Worker Manager",
             desc = "features of Work Manager",
             enum = "WORK_MANAGER"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Notification",
+            desc = "features of Notification",
+            enum = "NOTIFICATION"
         ),
     )
 
@@ -120,6 +127,11 @@ class ListExampleActivity :
 
             "WORK_MANAGER" -> {
                 val intent = Intent(this, WorkerActivity::class.java)
+                startActivity(intent)
+            }
+
+            "NOTIFICATION" -> {
+                val intent = Intent(this, ExampleNotificationActivity::class.java)
                 startActivity(intent)
             }
         }

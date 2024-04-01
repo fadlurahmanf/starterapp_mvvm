@@ -7,7 +7,7 @@ import com.fadlurahmanf.starterappmvvm.databinding.ActivityFirebaseCrashlyticsBi
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
+import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import javax.inject.Inject
 

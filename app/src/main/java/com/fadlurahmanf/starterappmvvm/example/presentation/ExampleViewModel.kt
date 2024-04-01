@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel
+package com.fadlurahmanf.starterappmvvm.example.presentation
 
 import android.content.Context
 import androidx.lifecycle.LiveData

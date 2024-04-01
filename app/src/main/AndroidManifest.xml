@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <permission android:name="com.fadlurahmanf.starterappmvvm.PERMISSION_ON_CLICK_NOTIFICATION" />
 
     <application
         android:name=".BaseApp"
@@ -15,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StarterAppMVVM"
         tools:targetApi="31">
+        <activity
+            android:name=".example.presentation.activity.notification.ExampleNotificationDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".example.presentation.activity.notification.ExampleNotificationActivity"
+            android:exported="false" />
         <activity
             android:name=".example.presentation.activity.worker.WorkerActivity"
             android:exported="false" />

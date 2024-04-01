@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel
+package com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call
 
 import com.fadlurahmanf.starterappmvvm.core.network.datasources.GuestIdentityDatasourceImpl
 import javax.inject.Inject
