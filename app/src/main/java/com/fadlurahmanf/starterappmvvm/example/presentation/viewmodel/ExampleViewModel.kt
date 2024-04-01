@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepository
 import com.fadlurahmanf.starterappmvvm.example.data.model.FirstLaunchModel
 import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleUseCases
-import com.fadlurahmanf.starterappmvvm.others.layout.BaseViewModel
-import com.fadlurahmanf.starterappmvvm.others.state.general.AppState
+import com.fadlurahmanf.starterappmvvm.core.layout.BaseViewModel
+import com.fadlurahmanf.starterappmvvm.core.state.general.AppState
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers

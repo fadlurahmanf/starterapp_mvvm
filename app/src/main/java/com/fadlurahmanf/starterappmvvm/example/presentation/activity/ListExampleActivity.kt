@@ -14,8 +14,8 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.Sto
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.WorkerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.viewmodel.ExampleViewModel
-import com.fadlurahmanf.starterappmvvm.others.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.others.state.general.AppState
+import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.state.general.AppState
 import javax.inject.Inject
 
 class ListExampleActivity :
