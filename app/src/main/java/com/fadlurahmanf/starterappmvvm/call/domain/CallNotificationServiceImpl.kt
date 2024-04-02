@@ -11,9 +11,8 @@ import com.fadlurahmanf.starterappmvvm.call.domain.player.CallNotificationPlayer
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
-class CallNotificationServiceImpl @Inject constructor(
-    notificationService: NotificationService,
-) : BaseNotificationService(), CallNotificationService {
+class CallNotificationServiceImpl @Inject constructor() : BaseNotificationService(),
+    CallNotificationService {
     override fun showIncomingCallNotification(
         context: Context,
         id: Int,

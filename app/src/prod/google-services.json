@@ -7,9 +7,28 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:411788768201:android:10a4592033e8a34b882e18",
+        "android_client_info": {
+          "package_name": "com.fadlurahmanf.starterappmvvm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx5_VHHfwqjptx9_Zq93dPXAbEHCabBWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:411788768201:android:7d4ea763f1c39e16882e18",
         "android_client_info": {
-          "package_name": "com.fadlurahmanf.starterappmvvm.prod"
+          "package_name": "com.fadlurahmanf.starterappmvvm.dev"
         }
       },
       "oauth_client": [],

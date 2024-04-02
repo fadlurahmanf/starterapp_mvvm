@@ -17,6 +17,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.state.AppState
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
+import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
 
 class ListExampleActivity :
@@ -69,6 +70,12 @@ class ListExampleActivity :
             title = "Notification",
             desc = "features of Notification",
             enum = "NOTIFICATION"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "FCM Token",
+            desc = "Get FCM Token",
+            enum = "GET_FCM_TOKEN"
         ),
     )
 
@@ -133,6 +140,12 @@ class ListExampleActivity :
             "NOTIFICATION" -> {
                 val intent = Intent(this, ExampleNotificationActivity::class.java)
                 startActivity(intent)
+            }
+
+            "GET_FCM_TOKEN" -> {
+                FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
+                    println("FCM TOKEN: $token")
+                }
             }
         }
     }

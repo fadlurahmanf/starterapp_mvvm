@@ -67,8 +67,9 @@ class CallNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (!this::notificationService.isInitialized && !this::callNotificationService.isInitialized && context != null) {
             notificationService = NotificationServiceImpl()
-            callNotificationService = CallNotificationServiceImpl(notificationService)
+            callNotificationService = CallNotificationServiceImpl()
         }
+
         if (context == null) return
         when (intent?.action) {
             ACTION_NOTIFICATION_ACCEPT_INCOMING_CALL -> {

@@ -109,6 +109,7 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
     implementation(libs.google.firebase.analytics)
+    implementation(libs.firebase.messaging)
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)

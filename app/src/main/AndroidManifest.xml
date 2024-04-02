@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StarterAppMVVM"
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
             android:name=".call.presentation.CallActivity"
             android:exported="false" />
@@ -43,7 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".example.presentation.activity.ListExampleActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +53,7 @@
 
         <receiver
             android:name=".call.domain.receiver.CallNotificationReceiver"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.fadlurahmanf.starterappmvvm.ACTION_NOTIFICATION_ACCEPT_INCOMING_CALL" />
                 <action android:name="com.fadlurahmanf.starterappmvvm.ACTION_NOTIFICATION_DECLINED_INCOMING_CALL" />
@@ -62,10 +62,18 @@
 
         <service
             android:name=".call.domain.player.CallNotificationPlayerService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.fadlurahmanf.starterappmvvm.ACTION_NOTIFICATION_PLAYER_START_INCOMING_CALL_PLAYER" />
                 <action android:name="com.fadlurahmanf.starterappmvvm.ACTION_NOTIFICATION_PLAYER_STOP_INCOMING_CALL_PLAYER" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".example.domain.services.FCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
     </application>

@@ -7,10 +7,10 @@ import com.fadlurahmanf.starterappmvvm.core.notification.others.NotificationModu
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [NotificationModule::class])
+@Module
 class CallModule {
     @Provides
-    fun provideCallNotificationService(notificationService: NotificationService): CallNotificationService {
-        return CallNotificationServiceImpl(notificationService)
+    fun provideCallNotificationService(): CallNotificationService {
+        return CallNotificationServiceImpl()
     }
 }
