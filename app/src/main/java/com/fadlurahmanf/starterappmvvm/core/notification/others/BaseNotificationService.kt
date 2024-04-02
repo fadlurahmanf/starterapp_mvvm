@@ -3,6 +3,8 @@ package com.fadlurahmanf.starterappmvvm.core.notification.others
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
@@ -15,6 +17,9 @@ abstract class BaseNotificationService {
         const val GENERAL_CHANNEL_ID = "GENERAL"
         const val GENERAL_CHANNEL_NAME = "Umum"
         const val GENERAL_CHANNEL_DESCRIPTION = "Notifikasi Umum"
+        const val CHAT_CHANNEL_ID = "CHAT"
+        const val CHAT_CHANNEL_NAME = "Percakapan"
+        const val CHAT_CHANNEL_DESCRIPTION = "Percakapan"
         const val VOIP_CHANNEL_ID = "VOIP"
         const val VOIP_CHANNEL_NAME = "Panggilan"
         const val VOIP_CHANNEL_DESCRIPTION = "Panggilan"
@@ -39,13 +44,39 @@ abstract class BaseNotificationService {
                 }
             }
             if (generalChannel != null) return
+            val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             val channel = NotificationChannel(
                 GENERAL_CHANNEL_ID,
                 GENERAL_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 this.description = GENERAL_CHANNEL_DESCRIPTION
-                setSound(null, null)
+                setSound(soundUri, null)
+            }
+            getNotificationManager(context).createNotificationChannel(channel)
+        }
+    }
+
+    fun createChatNotificationChannel(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val allChannels = getNotificationManager(context).notificationChannels
+            var chatChannel: NotificationChannel? = null
+            for (element in allChannels) {
+                if (element.id == CHAT_CHANNEL_ID) {
+                    chatChannel = element
+                    break
+                }
+            }
+            if (chatChannel != null) return
+            val uriSound =
+                Uri.parse("android.resource://" + context.packageName + "/" + R.raw.pop_up_alert_notification)
+            val channel = NotificationChannel(
+                CHAT_CHANNEL_ID,
+                CHAT_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                this.description = CHAT_CHANNEL_DESCRIPTION
+                setSound(uriSound, null)
             }
             getNotificationManager(context).createNotificationChannel(channel)
         }

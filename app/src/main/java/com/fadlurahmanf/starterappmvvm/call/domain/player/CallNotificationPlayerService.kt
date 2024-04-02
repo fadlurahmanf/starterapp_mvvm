@@ -103,9 +103,9 @@ class CallNotificationPlayerService : Service() {
     }
 
     private fun startRingingNormalMode() {
-        val notifUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
         mediaPlayer = MediaPlayer()
-        mediaPlayer?.setDataSource(applicationContext, notifUri)
+        mediaPlayer?.setDataSource(applicationContext, soundUri)
 
         // set volume based on ringtone volume
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

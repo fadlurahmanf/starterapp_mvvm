@@ -11,7 +11,8 @@ import androidx.core.content.ContextCompat
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
-class NotificationServiceImpl @Inject constructor() : BaseNotificationService(), NotificationService {
+class NotificationServiceImpl @Inject constructor() : BaseNotificationService(),
+    NotificationService {
 
     override fun areNotificationEnabledAndGranted(context: Context): Boolean {
         return when {
@@ -63,6 +64,24 @@ class NotificationServiceImpl @Inject constructor() : BaseNotificationService(),
     ) {
         createGeneralNotificationChannel(context)
         val notification = notificationBuilder(context, GENERAL_CHANNEL_ID).apply {
+            setContentTitle(title)
+            setContentText(message)
+            if (pendingIntent != null) {
+                setContentIntent(pendingIntent)
+            }
+        }
+        getNotificationManager(context).notify(id, notification.build())
+    }
+
+    override fun showChatNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        pendingIntent: PendingIntent?
+    ) {
+        createChatNotificationChannel(context)
+        val notification = notificationBuilder(context, CHAT_CHANNEL_ID).apply {
             setContentTitle(title)
             setContentText(message)
             if (pendingIntent != null) {

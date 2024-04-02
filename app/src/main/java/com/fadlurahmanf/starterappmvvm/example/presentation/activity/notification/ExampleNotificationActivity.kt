@@ -49,6 +49,12 @@ class ExampleNotificationActivity :
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show chat notification",
+            desc = "Show chat notification with different sound",
+            enum = "SHOW_NOTIFICATION_3"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
             title = "Show Incoming Call Notification",
             desc = "Show incoming call notification",
             enum = "SHOW_INCOMING_CALL_NOTIFICATION"
@@ -141,6 +147,16 @@ class ExampleNotificationActivity :
                     "Random Title Detail 2 $randomInt",
                     "Random Message Detail 2 $randomInt",
                     ExampleNotificationUtility.getPendingIntentNotificationDetail(this, randomInt)
+                )
+            }
+
+            "SHOW_NOTIFICATION_3" -> {
+                val randomInt = Random.nextInt(99)
+                viewModel.showChatNotification(
+                    this,
+                    randomInt,
+                    "Random Title Chat $randomInt",
+                    "Random Message Chat $randomInt",
                 )
             }
 

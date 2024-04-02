@@ -21,5 +21,14 @@ interface NotificationService {
         pendingIntent: PendingIntent? = null,
     )
 
+    // chat with different sound
+    fun showChatNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        pendingIntent: PendingIntent? = null,
+    )
+
     fun cancelNotification(context: Context, id: Int)
 }
