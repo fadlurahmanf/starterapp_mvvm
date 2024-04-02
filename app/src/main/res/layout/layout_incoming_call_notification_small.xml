@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_caller_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:text="Caller Name"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_decline"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:contentDescription="declined incoming call"
+        android:src="@drawable/baseline_close_24"
+        app:tint="@color/icon_declined_incoming_call"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/iv_accept"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="accept incoming call"
+        android:src="@drawable/outline_check_circle_outline_24"
+        app:tint="@color/icon_accept_incoming_call"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

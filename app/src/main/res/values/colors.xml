@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="green">#008000</color>
+
+    <color name="icon_declined_incoming_call">@color/red</color>
+    <color name="icon_accept_incoming_call">@color/green</color>
 </resources>

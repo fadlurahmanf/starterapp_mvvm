@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.crypto.others
+package com.fadlurahmanf.starterappmvvm.crypto.others.di
 
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepositoryImpl

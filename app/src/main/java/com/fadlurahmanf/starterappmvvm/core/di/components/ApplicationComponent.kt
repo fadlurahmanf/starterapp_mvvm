@@ -1,7 +1,8 @@
 package com.fadlurahmanf.starterappmvvm.core.di.components
 
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.crypto.others.CryptoModule
+import com.fadlurahmanf.starterappmvvm.call.di.CallModule
+import com.fadlurahmanf.starterappmvvm.crypto.others.di.CryptoModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.core.di.modules.NetworkModule
@@ -18,6 +19,7 @@ import javax.inject.Singleton
         CryptoModule::class,
         PlatformModule::class,
         NotificationModule::class,
+        CallModule::class,
         StorageModule::class,
         NetworkModule::class,
         ExampleModule::class,

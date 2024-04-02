@@ -2,12 +2,14 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notificati
 
 import android.app.PendingIntent
 import android.content.Context
+import com.fadlurahmanf.starterappmvvm.call.domain.CallNotificationService
 import com.fadlurahmanf.starterappmvvm.core.layout.BaseViewModel
 import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationService
 import javax.inject.Inject
 
 class ExampleNotificationViewModel @Inject constructor(
-    private val notificationService: NotificationService
+    private val notificationService: NotificationService,
+    private val callNotificationService: CallNotificationService,
 ) : BaseViewModel() {
 
     fun checkIsPermissionGranted(context: Context) =
@@ -24,6 +26,27 @@ class ExampleNotificationViewModel @Inject constructor(
         onLaunchPermission
     )
 
-    fun showSimpleNotification(context: Context, id: Int, title: String, message: String, pendingIntent: PendingIntent) =
+    fun showSimpleNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        pendingIntent: PendingIntent
+    ) =
         notificationService.showNotification(context, id, title, message, pendingIntent)
+
+    fun showIncomingCallNotification(
+        context: Context,
+        id: Int,
+        callerName: String,
+        phoneNumberCaller: String
+    ) = callNotificationService.showIncomingCallNotification(
+        context,
+        id,
+        callerName,
+        phoneNumberCaller
+    )
+
+    fun cancelIncomingCallNotification(context: Context, id: Int) =
+        callNotificationService.cancelIncomingCallNotification(context, id)
 }
