@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt") version "1.9.22"
+    id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
 }
@@ -110,7 +111,7 @@ dependencies {
     implementation(libs.google.firebase.analytics)
 
     implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.room.rxjava3)
 
     // ed25519
@@ -119,5 +120,5 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
 
     implementation(libs.glide)
-    kapt(libs.compiler)
+    ksp(libs.compiler)
 }
