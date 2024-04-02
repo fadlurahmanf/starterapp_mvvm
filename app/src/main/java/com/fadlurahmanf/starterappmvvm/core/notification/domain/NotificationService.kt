@@ -30,5 +30,13 @@ interface NotificationService {
         pendingIntent: PendingIntent? = null,
     )
 
+    fun showImageNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        imageUrl: String,
+    )
+
     fun cancelNotification(context: Context, id: Int)
 }

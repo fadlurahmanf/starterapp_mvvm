@@ -49,9 +49,14 @@ class ExampleNotificationActivity :
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Show chat notification",
+            title = "Show Chat Notification",
             desc = "Show chat notification with different sound",
             enum = "SHOW_NOTIFICATION_3"
+        ), FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show Image Notification",
+            desc = "Show notification with image",
+            enum = "SHOW_IMAGE_NOTIFICATION"
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
@@ -157,6 +162,17 @@ class ExampleNotificationActivity :
                     randomInt,
                     "Random Title Chat $randomInt",
                     "Random Message Chat $randomInt",
+                )
+            }
+
+            "SHOW_IMAGE_NOTIFICATION" -> {
+                val randomInt = Random.nextInt(99)
+                viewModel.showImageNotification(
+                    this,
+                    randomInt,
+                    "Random Title Image $randomInt",
+                    "Random Message Image $randomInt",
+                    "https://raw.githubusercontent.com/TutorialsBuzz/cdn/main/android.jpg"
                 )
             }
 

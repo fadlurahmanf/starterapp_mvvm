@@ -4,10 +4,16 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
@@ -89,6 +95,37 @@ class NotificationServiceImpl @Inject constructor() : BaseNotificationService(),
             }
         }
         getNotificationManager(context).notify(id, notification.build())
+    }
+
+    override fun showImageNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        imageUrl: String
+    ) {
+        createGeneralNotificationChannel(context)
+        val notification = notificationBuilder(context, GENERAL_CHANNEL_ID).apply {
+            setContentTitle(title)
+            setContentText(message)
+        }
+        Glide.with(context)
+            .asBitmap()
+            .load(imageUrl)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onResourceReady(
+                    resource: Bitmap,
+                    transition: Transition<in Bitmap>?
+                ) {
+                    notification.setLargeIcon(resource)
+                    notification.setStyle(NotificationCompat.BigPictureStyle().bigPicture(resource))
+                    getNotificationManager(context)
+                        .notify(id, notification.build())
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {}
+
+            })
     }
 
     override fun cancelNotification(context: Context, id: Int) {

@@ -43,6 +43,15 @@ class ExampleNotificationViewModel @Inject constructor(
     ) =
         notificationService.showChatNotification(context, id, title, message, null)
 
+    fun showImageNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String,
+        imageUrl: String,
+    ) =
+        notificationService.showImageNotification(context, id, title, message, imageUrl)
+
     fun showIncomingCallNotification(
         context: Context,
         id: Int,
