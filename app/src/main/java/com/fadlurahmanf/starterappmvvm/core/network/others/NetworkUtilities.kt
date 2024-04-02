@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.network
+package com.fadlurahmanf.starterappmvvm.core.network.others
 
 import com.fadlurahmanf.starterappmvvm.BuildConfig
 import com.fadlurahmanf.starterappmvvm.core.network.api.IdentityApi

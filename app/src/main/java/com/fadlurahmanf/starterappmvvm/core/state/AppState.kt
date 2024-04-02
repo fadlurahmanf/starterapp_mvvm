@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.state.general
+package com.fadlurahmanf.starterappmvvm.core.state
 
 import com.fadlurahmanf.starterappmvvm.core.exception.BaseException
 

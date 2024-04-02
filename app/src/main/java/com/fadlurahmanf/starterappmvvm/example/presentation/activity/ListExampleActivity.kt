@@ -15,7 +15,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.Work
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.core.state.general.AppState
+import com.fadlurahmanf.starterappmvvm.core.state.AppState
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import javax.inject.Inject
 

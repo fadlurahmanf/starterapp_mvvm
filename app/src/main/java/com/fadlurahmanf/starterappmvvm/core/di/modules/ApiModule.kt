@@ -1,6 +1,6 @@
 package com.fadlurahmanf.starterappmvvm.core.di.modules
 
-import com.fadlurahmanf.starterappmvvm.core.network.NetworkUtilities
+import com.fadlurahmanf.starterappmvvm.core.network.others.NetworkUtilities
 import com.fadlurahmanf.starterappmvvm.core.network.api.IdentityApi
 import dagger.Module
 import dagger.Provides
