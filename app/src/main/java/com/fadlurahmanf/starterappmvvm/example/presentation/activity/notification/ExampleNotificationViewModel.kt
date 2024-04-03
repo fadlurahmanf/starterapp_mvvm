@@ -2,24 +2,24 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notificati
 
 import android.app.PendingIntent
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.call.domain.CallNotificationService
+import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.core.layout.BaseViewModel
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationService
+import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
 import javax.inject.Inject
 
 class ExampleNotificationViewModel @Inject constructor(
-    private val notificationService: NotificationService,
-    private val callNotificationService: CallNotificationService,
+    private val notificationRepository: NotificationRepository,
+    private val callNotificationRepository: CallNotificationRepository,
 ) : BaseViewModel() {
 
     fun checkIsPermissionGranted(context: Context) =
-        notificationService.areNotificationEnabledAndGranted(context)
+        notificationRepository.areNotificationEnabledAndGranted(context)
 
     fun askNotificationPermission(
         activity: ExampleNotificationActivity, onGranted: () -> Unit,
         onShouldShowRequestPermissionRationale: () -> Unit,
         onLaunchPermission: () -> Unit,
-    ) = notificationService.askNotificationPermissionPermission(
+    ) = notificationRepository.askNotificationPermissionPermission(
         activity,
         onGranted,
         onShouldShowRequestPermissionRationale,
@@ -33,7 +33,7 @@ class ExampleNotificationViewModel @Inject constructor(
         message: String,
         pendingIntent: PendingIntent
     ) =
-        notificationService.showNotification(context, id, title, message, pendingIntent)
+        notificationRepository.showNotification(context, id, title, message, pendingIntent)
 
     fun showChatNotification(
         context: Context,
@@ -41,7 +41,7 @@ class ExampleNotificationViewModel @Inject constructor(
         title: String,
         message: String
     ) =
-        notificationService.showChatNotification(context, id, title, message, null)
+        notificationRepository.showChatNotification(context, id, title, message, null)
 
     fun showImageNotification(
         context: Context,
@@ -50,14 +50,14 @@ class ExampleNotificationViewModel @Inject constructor(
         message: String,
         imageUrl: String,
     ) =
-        notificationService.showImageNotification(context, id, title, message, imageUrl)
+        notificationRepository.showImageNotification(context, id, title, message, imageUrl)
 
     fun showIncomingCallNotification(
         context: Context,
         id: Int,
         callerName: String,
         phoneNumberCaller: String
-    ) = callNotificationService.showIncomingCallNotification(
+    ) = callNotificationRepository.showIncomingCallNotification(
         context,
         id,
         callerName,
@@ -65,5 +65,5 @@ class ExampleNotificationViewModel @Inject constructor(
     )
 
     fun cancelIncomingCallNotification(context: Context, id: Int) =
-        callNotificationService.cancelIncomingCallNotification(context, id)
+        callNotificationRepository.cancelIncomingCallNotification(context, id)
 }

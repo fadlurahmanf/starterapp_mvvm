@@ -5,15 +5,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import com.fadlurahmanf.starterappmvvm.call.domain.CallNotificationService
-import com.fadlurahmanf.starterappmvvm.call.domain.CallNotificationServiceImpl
+import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
+import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.call.presentation.CallActivity
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationService
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationServiceImpl
+import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepositoryImpl
 
 class CallNotificationReceiver : BroadcastReceiver() {
-    private lateinit var notificationService: NotificationService
-    private lateinit var callNotificationService: CallNotificationService
+    private lateinit var notificationRepository: NotificationRepository
+    private lateinit var callNotificationRepository: CallNotificationRepository
 
     companion object {
         const val ACTION_NOTIFICATION_ACCEPT_INCOMING_CALL =
@@ -89,9 +89,9 @@ class CallNotificationReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        if (!this::notificationService.isInitialized && !this::callNotificationService.isInitialized && context != null) {
-            notificationService = NotificationServiceImpl()
-            callNotificationService = CallNotificationServiceImpl()
+        if (!this::notificationRepository.isInitialized && !this::callNotificationRepository.isInitialized && context != null) {
+            notificationRepository = NotificationRepositoryImpl()
+            callNotificationRepository = CallNotificationRepositoryImpl()
         }
 
         if (context == null) return
@@ -113,13 +113,13 @@ class CallNotificationReceiver : BroadcastReceiver() {
     }
 
     private fun onAcceptIncomingCall(context: Context, notificationId: Int) {
-        callNotificationService.cancelIncomingCallNotification(context, notificationId)
+        callNotificationRepository.cancelIncomingCallNotification(context, notificationId)
         val intent = Intent(context, CallActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
 
     private fun onDeclinedIncomingCall(context: Context, notificationId: Int) {
-        callNotificationService.cancelIncomingCallNotification(context, notificationId)
+        callNotificationRepository.cancelIncomingCallNotification(context, notificationId)
     }
 }

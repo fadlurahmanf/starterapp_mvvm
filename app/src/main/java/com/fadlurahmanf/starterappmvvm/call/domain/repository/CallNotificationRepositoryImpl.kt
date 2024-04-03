@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.call.domain
+package com.fadlurahmanf.starterappmvvm.call.domain.repository
 
 import android.app.Notification
 import android.app.PendingIntent
@@ -9,14 +9,13 @@ import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.call.domain.receiver.CallNotificationReceiver
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationService
 import com.fadlurahmanf.starterappmvvm.call.domain.player.CallNotificationPlayerService
 import com.fadlurahmanf.starterappmvvm.call.presentation.IncomingCallActivity
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
-class CallNotificationServiceImpl @Inject constructor() : BaseNotificationService(),
-    CallNotificationService {
+class CallNotificationRepositoryImpl @Inject constructor() : BaseNotificationService(),
+    CallNotificationRepository {
     override fun showIncomingCallNotification(
         context: Context,
         id: Int,

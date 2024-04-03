@@ -43,6 +43,7 @@ class MusicPlayer : Player.Listener, AnalyticsListener {
             CacheDataSource.Factory()
                 .setCache(cache)
                 .setUpstreamDataSourceFactory(dataSourceFactory)
+                .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
         val mediaSource: MediaSource =
             ProgressiveMediaSource.Factory(cacheDataSourceFactory)
                 .createMediaSource(mediaItem)

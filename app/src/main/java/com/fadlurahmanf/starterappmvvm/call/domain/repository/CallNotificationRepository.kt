@@ -1,9 +1,8 @@
-package com.fadlurahmanf.starterappmvvm.call.domain
+package com.fadlurahmanf.starterappmvvm.call.domain.repository
 
-import android.app.PendingIntent
 import android.content.Context
 
-interface CallNotificationService {
+interface CallNotificationRepository {
     fun showIncomingCallNotification(
         context: Context,
         id: Int,

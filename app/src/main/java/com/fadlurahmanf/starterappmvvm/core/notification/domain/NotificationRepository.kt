@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 
-interface NotificationService {
+interface NotificationRepository {
     fun areNotificationEnabledAndGranted(context: Context): Boolean
     fun askNotificationPermissionPermission(
         activity: Activity,

@@ -17,8 +17,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
-class NotificationServiceImpl @Inject constructor() : BaseNotificationService(),
-    NotificationService {
+class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService(),
+    NotificationRepository {
 
     override fun areNotificationEnabledAndGranted(context: Context): Boolean {
         return when {
