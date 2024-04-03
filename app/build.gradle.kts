@@ -122,4 +122,6 @@ dependencies {
 
     implementation(libs.glide)
     ksp(libs.compiler)
+
+    implementation(libs.androidx.media3.exoplayer)
 }

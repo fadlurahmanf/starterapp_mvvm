@@ -16,6 +16,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_vi
 import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.state.AppState
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
@@ -76,6 +77,12 @@ class ListExampleActivity :
             title = "FCM Token",
             desc = "Get FCM Token",
             enum = "GET_FCM_TOKEN"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Music Player",
+            desc = "Go to Music Player Activity",
+            enum = "MUSIC_PLAYER"
         ),
     )
 
@@ -146,6 +153,11 @@ class ListExampleActivity :
                 FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
                     println("FCM TOKEN: $token")
                 }
+            }
+
+            "MUSIC_PLAYER" -> {
+                val intent = Intent(this, MusicPlayerActivity::class.java)
+                startActivity(intent)
             }
         }
     }
