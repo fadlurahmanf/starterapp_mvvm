@@ -46,6 +46,18 @@ class FCMService : FirebaseMessagingService() {
                 }
             }
 
+            "VOIP_CALL" -> {
+                val notificationId = 0
+                val callerName = message.data["callerName"]
+                val phoneCallerName = message.data["phoneCallerName"]
+                callNotificationService.showIncomingCallNotification(
+                    applicationContext,
+                    notificationId,
+                    callerName ?: "-",
+                    phoneCallerName ?: "-",
+                )
+            }
+
             else -> {
 
             }

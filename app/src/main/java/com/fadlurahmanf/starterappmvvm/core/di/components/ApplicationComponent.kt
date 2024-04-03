@@ -2,6 +2,7 @@ package com.fadlurahmanf.starterappmvvm.core.di.components
 
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.di.CallModule
+import com.fadlurahmanf.starterappmvvm.call.di.CallSubComponent
 import com.fadlurahmanf.starterappmvvm.crypto.others.di.CryptoModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
@@ -32,4 +33,5 @@ interface ApplicationComponent {
     }
 
     fun exampleSubComponentFactory(): ExampleSubComponent.Factory
+    fun callSubComponentFactory(): CallSubComponent.Factory
 }

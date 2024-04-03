@@ -1,13 +1,17 @@
 package com.fadlurahmanf.starterappmvvm.call.domain
 
 import android.app.Notification
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.call.domain.receiver.CallNotificationReceiver
 import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationService
 import com.fadlurahmanf.starterappmvvm.call.domain.player.CallNotificationPlayerService
+import com.fadlurahmanf.starterappmvvm.call.presentation.IncomingCallActivity
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import javax.inject.Inject
 
@@ -30,7 +34,7 @@ class CallNotificationServiceImpl @Inject constructor() : BaseNotificationServic
             .setWhen(0)
             .setTimeoutAfter(60000L)
             .setOnlyAlertOnce(true)
-//            .setFullScreenIntent(getFullScreenIntent(notificationId), true)
+            .setFullScreenIntent(getFullScreenIncomingCallActivityIntent(context, id), true)
 //            .setDeleteIntent(getDeleteCallPendingIntent(notificationId))
 
         val notificationView =
@@ -79,5 +83,21 @@ class CallNotificationServiceImpl @Inject constructor() : BaseNotificationServic
     override fun cancelIncomingCallNotification(context: Context, id: Int) {
         getNotificationManager(context).cancel(id)
         CallNotificationPlayerService.stopIncomingCallNotificationPlayer(context)
+    }
+
+    private fun getFullScreenIncomingCallActivityIntent(context: Context, id: Int): PendingIntent {
+        val intent = Intent(
+            context,
+            IncomingCallActivity::class.java
+        )
+        intent.apply {
+            putExtra("NOTIFICATION_ID", id)
+        }
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        } else {
+            PendingIntent.FLAG_UPDATE_CURRENT
+        }
+        return PendingIntent.getActivity(context, id, intent, flag)
     }
 }

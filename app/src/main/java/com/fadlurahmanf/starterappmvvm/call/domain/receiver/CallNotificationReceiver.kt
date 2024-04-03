@@ -55,6 +55,30 @@ class CallNotificationReceiver : BroadcastReceiver() {
             )
         }
 
+        fun sendBroadcastAcceptCallPendingIntent(
+            context: Context,
+            notificationId: Int
+        ) {
+            val intent = Intent(context, CallNotificationReceiver::class.java)
+            intent.apply {
+                action = ACTION_NOTIFICATION_ACCEPT_INCOMING_CALL
+                putExtra("NOTIFICATION_ID", notificationId)
+            }
+            return context.sendBroadcast(intent)
+        }
+
+        fun sendBroadcastDeclinedCallPendingIntent(
+            context: Context,
+            notificationId: Int
+        ) {
+            val intent = Intent(context, CallNotificationReceiver::class.java)
+            intent.apply {
+                action = ACTION_NOTIFICATION_DECLINED_INCOMING_CALL
+                putExtra("NOTIFICATION_ID", notificationId)
+            }
+            return context.sendBroadcast(intent)
+        }
+
         private fun getFlagPendingIntent(): Int {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT

@@ -177,8 +177,7 @@ class ExampleNotificationActivity :
             }
 
             "SHOW_INCOMING_CALL_NOTIFICATION" -> {
-                val randomInt = Random.nextInt(99)
-                incomingCallNotificationId = randomInt
+                incomingCallNotificationId = 0
                 viewModel.showIncomingCallNotification(
                     this,
                     incomingCallNotificationId!!,
