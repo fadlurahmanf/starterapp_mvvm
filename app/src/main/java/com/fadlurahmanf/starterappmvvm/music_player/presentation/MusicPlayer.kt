@@ -21,12 +21,18 @@ import com.fadlurahmanf.starterappmvvm.music_player.data.state.MusicPlayerState
 import com.fadlurahmanf.starterappmvvm.music_player.others.MusicPlayerShared
 
 @UnstableApi
-class MusicPlayer : Player.Listener, AnalyticsListener {
+class MusicPlayer : Listener, AnalyticsListener {
     private lateinit var exoPlayer: ExoPlayer
-    private var callback: MusicPlayer.Callback? = null
-    private var duration: Long = 0L
-    private var position: Long = 0L
-    var musicPlayerState: MusicPlayerState = MusicPlayerState.IDLE
+    private var callback: Callback? = null
+    private var _duration: Long = 0L
+    val duration: Long
+        get() = _duration
+    private var _position: Long = 0L
+    val position: Long
+        get() = _position
+    private var _musicPlayerState: MusicPlayerState = MusicPlayerState.IDLE
+    val musicPlayerState: MusicPlayerState
+        get() = _musicPlayerState
 
     fun setCallback(callback: Callback) {
         this.callback = callback
@@ -48,8 +54,8 @@ class MusicPlayer : Player.Listener, AnalyticsListener {
             ProgressiveMediaSource.Factory(cacheDataSourceFactory)
                 .createMediaSource(mediaItem)
         exoPlayer.setMediaSource(mediaSource)
-        exoPlayer.playWhenReady = true
         updateOnStateChanged(MusicPlayerState.IDLE)
+        exoPlayer.playWhenReady = true
         exoPlayer.prepare()
     }
 
@@ -63,24 +69,27 @@ class MusicPlayer : Player.Listener, AnalyticsListener {
     fun resume() {
         if (musicPlayerState == MusicPlayerState.PAUSED) {
             exoPlayer.play()
-            updateOnStateChanged(MusicPlayerState.PLAYING)
+            updateOnStateChanged(MusicPlayerState.RESUME)
+            handler.postDelayed({ updateOnStateChanged(MusicPlayerState.PLAYING) }, 500)
         }
+    }
+
+    /**
+     * position: in milliSecond
+     */
+    fun seekToPosition(position: Long) {
+        exoPlayer.seekTo(position)
     }
 
     private val handler = Handler(Looper.getMainLooper())
     private val fetchDurationAndPositionRunnable = object : Runnable {
         override fun run() {
-            if (exoPlayer.duration > 0 && duration != exoPlayer.duration) {
-                duration = exoPlayer.duration
-                callback?.onDurationChanged(duration)
-            }
-
             if (exoPlayer.currentPosition > 0 && position != exoPlayer.currentPosition) {
-                position = exoPlayer.currentPosition
+                _position = exoPlayer.currentPosition
                 callback?.onPositionChanged(position)
             }
 
-            handler.postDelayed(this, 1000)
+            handler.postDelayed(this, 250)
         }
     }
 
@@ -105,15 +114,17 @@ class MusicPlayer : Player.Listener, AnalyticsListener {
         } else if (state == Player.STATE_BUFFERING && musicPlayerState != MusicPlayerState.LOADING) {
             updateOnStateChanged(MusicPlayerState.LOADING)
         } else if (state == Player.STATE_READY && musicPlayerState != MusicPlayerState.READY) {
-            updateOnStateChanged(MusicPlayerState.READY)
+            _duration = exoPlayer.duration
+            callback?.onDurationFetched(duration)
             handler.post(fetchDurationAndPositionRunnable)
+            updateOnStateChanged(MusicPlayerState.READY)
         } else if (state == Player.STATE_ENDED && musicPlayerState != MusicPlayerState.ENDED) {
             updateOnStateChanged(MusicPlayerState.ENDED)
         }
     }
 
     private fun updateOnStateChanged(state: MusicPlayerState) {
-        musicPlayerState = state
+        _musicPlayerState = state
         callback?.onStateChanged(state)
     }
 
@@ -126,7 +137,7 @@ class MusicPlayer : Player.Listener, AnalyticsListener {
 
     interface Callback {
         fun onStateChanged(state: MusicPlayerState) {}
-        fun onDurationChanged(duration: Long) {}
+        fun onDurationFetched(duration: Long) {}
         fun onPositionChanged(position: Long) {}
     }
 }

@@ -22,6 +22,9 @@ abstract class BaseNotificationService {
         const val VOIP_CHANNEL_ID = "VOIP"
         const val VOIP_CHANNEL_NAME = "Panggilan"
         const val VOIP_CHANNEL_DESCRIPTION = "Panggilan"
+        const val MEDIA_CHANNEL_ID = "MEDIA"
+        const val MEDIA_CHANNEL_NAME = "Media"
+        const val MEDIA_CHANNEL_DESCRIPTION = "Media"
     }
 
     fun getNotificationManager(context: Context): NotificationManager {
@@ -98,6 +101,29 @@ abstract class BaseNotificationService {
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 this.description = VOIP_CHANNEL_DESCRIPTION
+                setSound(null, null)
+            }
+            getNotificationManager(context).createNotificationChannel(channel)
+        }
+    }
+
+    fun createMediaNotificationChannel(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val allChannels = getNotificationManager(context).notificationChannels
+            var mediaChannel: NotificationChannel? = null
+            for (element in allChannels) {
+                if (element.id == MEDIA_CHANNEL_ID) {
+                    mediaChannel = element
+                    break
+                }
+            }
+            if (mediaChannel != null) return
+            val channel = NotificationChannel(
+                MEDIA_CHANNEL_ID,
+                MEDIA_CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                this.description = MEDIA_CHANNEL_DESCRIPTION
                 setSound(null, null)
             }
             getNotificationManager(context).createNotificationChannel(channel)
