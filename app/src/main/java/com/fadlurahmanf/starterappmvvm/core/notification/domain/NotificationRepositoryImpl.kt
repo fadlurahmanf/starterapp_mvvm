@@ -1,5 +1,6 @@
 package com.fadlurahmanf.starterappmvvm.core.notification.domain
 
+import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
@@ -25,7 +26,7 @@ class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> {
                 ContextCompat.checkSelfPermission(
                     context,
-                    android.Manifest.permission_group.NOTIFICATIONS
+                    Manifest.permission_group.NOTIFICATIONS
                 ) == PackageManager.PERMISSION_GRANTED
             }
 
@@ -35,28 +36,21 @@ class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService
         }
     }
 
-    override fun askNotificationPermissionPermission(
+    override fun askNotificationPermission(
         activity: Activity,
-        onGranted: () -> Unit,
         onShouldShowRequestPermissionRationale: () -> Unit,
-        onLaunchPermission: () -> Unit,
+        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
     ) {
         when {
-            ContextCompat.checkSelfPermission(
-                activity,
-                android.Manifest.permission_group.NOTIFICATIONS
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                onGranted()
-            }
-
             ActivityCompat.shouldShowRequestPermissionRationale(
-                activity, android.Manifest.permission_group.NOTIFICATIONS
+                activity, Manifest.permission_group.NOTIFICATIONS
             ) -> {
                 onShouldShowRequestPermissionRationale()
             }
 
             else -> {
-                onLaunchPermission()
+                val status = ContextCompat.checkSelfPermission(activity, Manifest.permission_group.NOTIFICATIONS)
+                onCompleteCheckPermission(status == PackageManager.PERMISSION_GRANTED, status)
             }
         }
     }

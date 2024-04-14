@@ -1,5 +1,6 @@
 package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification
 
+import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
@@ -16,14 +17,13 @@ class ExampleNotificationViewModel @Inject constructor(
         notificationRepository.areNotificationEnabledAndGranted(context)
 
     fun askNotificationPermission(
-        activity: ExampleNotificationActivity, onGranted: () -> Unit,
+        activity: ExampleNotificationActivity,
         onShouldShowRequestPermissionRationale: () -> Unit,
-        onLaunchPermission: () -> Unit,
-    ) = notificationRepository.askNotificationPermissionPermission(
+        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
+    ) = notificationRepository.askNotificationPermission(
         activity,
-        onGranted,
         onShouldShowRequestPermissionRationale,
-        onLaunchPermission
+        onCompleteCheckPermission
     )
 
     fun showSimpleNotification(

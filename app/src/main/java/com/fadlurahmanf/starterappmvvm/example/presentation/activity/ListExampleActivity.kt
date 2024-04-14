@@ -16,6 +16,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_vi
 import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.state.AppState
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.biometric.BiometricActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import com.google.firebase.messaging.FirebaseMessaging
@@ -53,6 +54,12 @@ class ListExampleActivity :
             title = "Crypto",
             desc = "features of crypto",
             enum = "CRYPTO"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Biometric",
+            desc = "features of biometric",
+            enum = "BIOMETRIC"
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
@@ -131,6 +138,11 @@ class ListExampleActivity :
 
             "CRYPTO" -> {
                 val intent = Intent(this, AesCryptoActivity::class.java)
+                startActivity(intent)
+            }
+
+            "BIOMETRIC" -> {
+                val intent = Intent(this, BiometricActivity::class.java)
                 startActivity(intent)
             }
 

@@ -3,14 +3,19 @@ package com.fadlurahmanf.starterappmvvm.core.notification.domain
 import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
+import android.content.pm.PackageManager
 
 interface NotificationRepository {
     fun areNotificationEnabledAndGranted(context: Context): Boolean
-    fun askNotificationPermissionPermission(
+    /**
+     * Determine whether <em>you</em> have been granted a particular permission.
+     * @return isResult: [PackageManager.PERMISSION_GRANTED] if you have the
+     * permission, or [PackageManager.PERMISSION_DENIED] if not.
+     */
+    fun askNotificationPermission(
         activity: Activity,
-        onGranted: () -> Unit,
         onShouldShowRequestPermissionRationale: () -> Unit,
-        onLaunchPermission: () -> Unit
+        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
     )
 
     fun showNotification(

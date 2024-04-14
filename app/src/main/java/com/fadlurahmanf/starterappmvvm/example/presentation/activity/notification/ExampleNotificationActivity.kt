@@ -121,14 +121,11 @@ class ExampleNotificationActivity :
             "ASK_NOTIFICATION_PERMISSION" -> {
                 viewModel.askNotificationPermission(
                     this,
-                    onGranted = {
-                        Log.d(AppConstant.LOGGER_TAG, "NOTIFICATION PERMISSION ALREADY GRANTED")
-                    },
                     onShouldShowRequestPermissionRationale = {
                         Log.d(AppConstant.LOGGER_TAG, "ASK NOTIFICATION PERMISSION")
                     },
-                    onLaunchPermission = {
-                        Log.d(AppConstant.LOGGER_TAG, "ON LAUNCH PERMISSION")
+                    onCompleteCheckPermission = { isGranted, statusPermission ->
+                        Log.d(AppConstant.LOGGER_TAG, "IS NOTIFICATION PERMISSION GRANTED: $isGranted, STATUS PERMISSION: $statusPermission")
                     },
                 )
             }
