@@ -1,6 +1,6 @@
 package com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage
 
-import com.fadlurahmanf.starterappmvvm.core.layout.BaseViewModel
+import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleUseCases
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.layout
+package com.fadlurahmanf.starterappmvvm.core.shared.layout
 
 import android.os.Bundle
 import android.view.LayoutInflater

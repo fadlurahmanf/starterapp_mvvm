@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.layout
+package com.fadlurahmanf.starterappmvvm.core.shared.layout
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable

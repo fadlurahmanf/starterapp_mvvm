@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 import com.fadlurahmanf.starterappmvvm.BaseApp
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
-import com.fadlurahmanf.starterappmvvm.core.layout.BaseActivity
-import com.fadlurahmanf.starterappmvvm.core.layout.InflateActivity
+import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseActivity
+import com.fadlurahmanf.starterappmvvm.core.shared.layout.InflateActivity
 
 abstract class BaseExampleActivity<VB : ViewBinding>(
     inflater: InflateActivity<VB>

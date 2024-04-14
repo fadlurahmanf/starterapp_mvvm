@@ -3,7 +3,7 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notificati
 import android.app.PendingIntent
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.layout.BaseViewModel
+import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
 import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
 import javax.inject.Inject
 
