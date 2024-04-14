@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.annotation.OptIn
 import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.music_player.data.state.MusicPlayerState
 import com.fadlurahmanf.starterappmvvm.music_player.domain.repository.MusicPlayerNotificationRepository
 import com.fadlurahmanf.starterappmvvm.music_player.domain.repository.MusicPlayerNotificationRepositoryImpl

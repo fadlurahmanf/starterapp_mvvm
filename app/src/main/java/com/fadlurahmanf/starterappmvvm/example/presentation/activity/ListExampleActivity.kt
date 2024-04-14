@@ -14,7 +14,7 @@ import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.Sto
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.WorkerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.state.AppState
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity

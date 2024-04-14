@@ -5,8 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.music_player.domain.service.MusicPlayerService
 
 class MusicPlayerReceiver : BroadcastReceiver() {

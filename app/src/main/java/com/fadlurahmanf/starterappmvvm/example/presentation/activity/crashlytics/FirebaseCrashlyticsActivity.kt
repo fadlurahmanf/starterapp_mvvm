@@ -8,7 +8,7 @@ import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
 import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import javax.inject.Inject
 
 class FirebaseCrashlyticsActivity :

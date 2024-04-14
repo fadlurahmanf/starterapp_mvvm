@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.call.domain.player.CallNotificationPlayerService
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityExampleNotificationBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel

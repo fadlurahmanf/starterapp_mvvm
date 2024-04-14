@@ -5,17 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
-import androidx.annotation.OptIn
 import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityMusicPlayerBinding
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.music_player.data.state.MusicPlayerState
 import com.fadlurahmanf.starterappmvvm.music_player.domain.service.MusicPlayerService
-import com.fadlurahmanf.starterappmvvm.music_player.presentation.MusicPlayer
 
 
 class MusicPlayerActivity :

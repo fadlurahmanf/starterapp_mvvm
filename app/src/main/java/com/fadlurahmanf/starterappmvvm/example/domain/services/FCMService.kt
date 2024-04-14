@@ -3,7 +3,7 @@ package com.fadlurahmanf.starterappmvvm.example.domain.services
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepositoryImpl
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
 import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepositoryImpl
 import com.google.firebase.messaging.FirebaseMessagingService

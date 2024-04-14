@@ -8,7 +8,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import com.fadlurahmanf.starterappmvvm.music_player.domain.receiver.MusicPlayerReceiver
 

@@ -3,10 +3,9 @@ package com.fadlurahmanf.starterappmvvm.example.others.workers
 import android.content.Context
 import android.util.Log
 import androidx.work.CoroutineWorker
-import androidx.work.Data
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import com.fadlurahmanf.starterappmvvm.core.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import kotlinx.coroutines.delay
 
 // Example upload image using work manager
