@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.di.modules
+package com.fadlurahmanf.starterappmvvm.core.config.di.modules
 
 import com.fadlurahmanf.starterappmvvm.core.network.api.IdentityApi
 import com.fadlurahmanf.starterappmvvm.core.network.datasources.GuestIdentityDatasourceImpl

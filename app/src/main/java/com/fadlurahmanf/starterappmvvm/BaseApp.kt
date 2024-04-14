@@ -1,7 +1,7 @@
 package com.fadlurahmanf.starterappmvvm
 
 import android.app.Application
-import com.fadlurahmanf.starterappmvvm.core.di.components.ApplicationComponent
+import com.fadlurahmanf.starterappmvvm.core.config.di.components.ApplicationComponent
 import com.fadlurahmanf.starterappmvvm.core.di.components.DaggerApplicationComponent
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 

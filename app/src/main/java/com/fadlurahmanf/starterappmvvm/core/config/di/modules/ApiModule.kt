@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.di.modules
+package com.fadlurahmanf.starterappmvvm.core.config.di.modules
 
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.BuildConfig

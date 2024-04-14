@@ -14,7 +14,7 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 typealias InflateActivity<T> = (LayoutInflater) -> T
 
 abstract class BaseActivity<VB : ViewBinding>(
-    var inflater: InflateActivity<VB>
+    private val inflater: InflateActivity<VB>
 ) : AppCompatActivity() {
 
     private lateinit var _binding: VB

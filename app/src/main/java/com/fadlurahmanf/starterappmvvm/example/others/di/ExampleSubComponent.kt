@@ -1,5 +1,6 @@
 package com.fadlurahmanf.starterappmvvm.example.others.di
 
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.biometric.BiometricActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.ListExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
@@ -21,4 +22,5 @@ interface ExampleSubComponent {
     fun inject(activity: AesCryptoActivity)
     fun inject(activity: StorageActivity)
     fun inject(activity: ExampleNotificationActivity)
+    fun inject(activity: BiometricActivity)
 }
