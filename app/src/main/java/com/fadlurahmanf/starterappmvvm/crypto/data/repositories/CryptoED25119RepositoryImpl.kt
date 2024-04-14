@@ -1,15 +1,28 @@
 package com.fadlurahmanf.starterappmvvm.crypto.data.repositories
 
+import android.security.keystore.KeyGenParameterSpec
+import android.util.Log
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.crypto.data.model.CryptoKey
 import com.fadlurahmanf.starterappmvvm.crypto.others.BaseCrypto
+import com.fadlurahmanf.starterappmvvm.crypto.others.BaseCryptoV2
 import org.bouncycastle.crypto.generators.Ed25519KeyPairGenerator
 import org.bouncycastle.crypto.params.Ed25519KeyGenerationParameters
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters
 import org.bouncycastle.crypto.params.Ed25519PublicKeyParameters
 import org.bouncycastle.crypto.signers.Ed25519Signer
+import java.security.KeyFactory
+import java.security.KeyPairGenerator
+import java.security.PrivateKey
 import java.security.SecureRandom
+import java.security.Signature
+import java.security.spec.ECPrivateKeySpec
+import java.security.spec.EncodedKeySpec
+import java.security.spec.KeySpec
+import java.security.spec.PKCS8EncodedKeySpec
+import java.security.spec.X509EncodedKeySpec
 
-class CryptoED25119RepositoryImpl : BaseCrypto(), CryptoED25119Repository {
+class CryptoED25119RepositoryImpl : BaseCryptoV2(), CryptoED25119Repository {
     override fun generateKey(): CryptoKey {
         val secureRandom = SecureRandom()
         val keyPairGenerator = Ed25519KeyPairGenerator()
@@ -25,13 +38,13 @@ class CryptoED25119RepositoryImpl : BaseCrypto(), CryptoED25119Repository {
 
     override fun generateSignature(plainText: String, encodedPrivateKey: String): String? {
         return try {
-            val privateKey = Ed25519PrivateKeyParameters(decode(encodedPrivateKey), 0)
             val signer = Ed25519Signer()
+            val privateKey = Ed25519PrivateKeyParameters(decode(encodedPrivateKey))
             signer.init(true, privateKey)
             signer.update(plainText.toByteArray(), 0, plainText.length)
-            val signature = signer.generateSignature()
-            encode(signature)
+            encode(signer.generateSignature())
         } catch (e: Throwable) {
+            Log.e(AppConstant.LOGGER_TAG, "failed generateSignature: ${e.message}")
             null
         }
     }

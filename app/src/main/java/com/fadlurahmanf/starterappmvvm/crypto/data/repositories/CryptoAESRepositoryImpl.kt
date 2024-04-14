@@ -8,6 +8,7 @@ import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+@Deprecated("use CryptoAESV2RepositoryImpl")
 class CryptoAESRepositoryImpl : BaseCrypto(), CryptoAESRepository {
     override fun generateKey(): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')

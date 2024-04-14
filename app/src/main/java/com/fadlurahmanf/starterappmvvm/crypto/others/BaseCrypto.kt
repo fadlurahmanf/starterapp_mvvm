@@ -3,6 +3,7 @@ package com.fadlurahmanf.starterappmvvm.crypto.others
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.PaddingScheme
 import android.util.Base64
 
+@Deprecated("use BaseCryptoV2")
 abstract class BaseCrypto {
 
     open fun encode(byte: ByteArray): String {

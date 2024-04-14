@@ -20,6 +20,9 @@
         android:theme="@style/Theme.StarterAppMVVM"
         tools:targetApi="31">
         <activity
+            android:name=".example.presentation.activity.crypto.ExampleCryptoActivity"
+            android:exported="false" />
+        <activity
             android:name=".example.presentation.activity.biometric.BiometricActivity"
             android:exported="false" />
         <activity

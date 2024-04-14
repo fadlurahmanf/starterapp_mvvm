@@ -4,21 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.R
+import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
+import com.fadlurahmanf.starterappmvvm.core.state.AppState
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityListExampleBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.biometric.BiometricActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.AesCryptoActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.ExampleCryptoActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
+import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.StorageActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.worker.WorkerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
-import com.fadlurahmanf.starterappmvvm.example.presentation.ExampleViewModel
-import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.core.state.AppState
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.biometric.BiometricActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import com.google.firebase.messaging.FirebaseMessaging
 import javax.inject.Inject
 
@@ -137,7 +137,7 @@ class ListExampleActivity :
             }
 
             "CRYPTO" -> {
-                val intent = Intent(this, AesCryptoActivity::class.java)
+                val intent = Intent(this, ExampleCryptoActivity::class.java)
                 startActivity(intent)
             }
 

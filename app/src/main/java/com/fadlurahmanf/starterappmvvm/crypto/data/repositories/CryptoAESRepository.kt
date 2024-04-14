@@ -2,6 +2,7 @@ package com.fadlurahmanf.starterappmvvm.crypto.data.repositories
 
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.PaddingScheme
 
+@Deprecated("use CryptoAESV2Repository")
 interface CryptoAESRepository {
     fun generateKey(): String
     fun encryptECB(
