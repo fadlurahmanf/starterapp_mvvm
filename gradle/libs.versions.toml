@@ -1,5 +1,5 @@
 [versions]
-agp = "8.4.0-alpha10"
+agp = "8.5.0-alpha03"
 bcprovJdk15on = "1.70"
 compiler = "4.16.0"
 dagger = "2.51"

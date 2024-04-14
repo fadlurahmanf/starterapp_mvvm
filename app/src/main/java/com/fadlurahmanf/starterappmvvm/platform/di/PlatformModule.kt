@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.platform.data.others.di
+package com.fadlurahmanf.starterappmvvm.platform.di
 
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepositoryImpl

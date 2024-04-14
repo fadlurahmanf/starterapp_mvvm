@@ -8,7 +8,7 @@ import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
 import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.core.di.modules.NetworkModule
 import com.fadlurahmanf.starterappmvvm.core.notification.others.NotificationModule
-import com.fadlurahmanf.starterappmvvm.platform.data.others.di.PlatformModule
+import com.fadlurahmanf.starterappmvvm.platform.di.PlatformModule
 import com.fadlurahmanf.starterappmvvm.storage.others.di.StorageModule
 import dagger.BindsInstance
 import dagger.Component

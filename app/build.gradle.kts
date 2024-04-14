@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    kotlin("kapt") version "1.9.22"
+    kotlin("kapt") version "1.9.23"
     id("com.google.devtools.ksp")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.fadlurahmanf.starterappmvvm"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "0.0.1"
@@ -100,6 +100,8 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    implementation("com.github.chuckerteam.chucker:library:4.0.0")
 
     implementation(libs.rxandroid)
     implementation(libs.rxjava)
