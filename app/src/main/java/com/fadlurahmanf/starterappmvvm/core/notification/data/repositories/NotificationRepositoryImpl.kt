@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.core.notification.data
+package com.fadlurahmanf.starterappmvvm.core.notification.data.repositories
 
 import android.Manifest
 import android.app.Activity

@@ -7,8 +7,8 @@ import android.media.RingtoneManager
 import android.net.Uri
 import com.fadlurahmanf.starterappmvvm.BuildConfig
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepositoryImpl
+import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.core.notification.data.dto.model.ItemGroupedNotificationModel
 import javax.inject.Inject
 

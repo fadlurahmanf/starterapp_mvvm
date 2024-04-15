@@ -1,7 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.example.others.di
 
 import com.fadlurahmanf.starterappmvvm.BuildConfig
-import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepositoryImpl

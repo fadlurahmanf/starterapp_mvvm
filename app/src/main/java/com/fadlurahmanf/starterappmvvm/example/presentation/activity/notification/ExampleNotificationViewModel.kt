@@ -4,7 +4,7 @@ import android.app.PendingIntent
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
-import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import javax.inject.Inject
 
