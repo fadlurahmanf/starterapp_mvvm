@@ -5,13 +5,13 @@ import com.fadlurahmanf.starterappmvvm.crypto.data.enums.AESMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESV2Repository
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25119Repository
+import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25519Repository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSAV2Repository
 import javax.inject.Inject
 
 class CryptoViewModel @Inject constructor(
     private val cryptoAESV2Repository: CryptoAESV2Repository,
-    private val cryptoED25119Repository: CryptoED25119Repository,
+    private val cryptoED25519Repository: CryptoED25519Repository,
     private val cryptoRSAV2Repository: CryptoRSAV2Repository,
 ) : BaseViewModel() {
 
@@ -22,12 +22,12 @@ class CryptoViewModel @Inject constructor(
     fun decryptAES(key: String, encryptedText: String, method: AESMethod) =
         cryptoAESV2Repository.decrypt(key, encryptedText, method)
 
-    fun generateEd25119Key() = cryptoED25119Repository.generateKey()
+    fun generateEd25119Key() = cryptoED25519Repository.generateKey()
     fun generateEd25119Signature(encodedPrivateKey: String, plainText: String) =
-        cryptoED25119Repository.generateSignature(plainText, encodedPrivateKey)
+        cryptoED25519Repository.generateSignature(plainText, encodedPrivateKey)
 
     fun verifyEd25119Signature(encodedPublicKey: String, signature: String, plainText: String) =
-        cryptoED25119Repository.verifySignature(plainText, signature, encodedPublicKey)
+        cryptoED25519Repository.verifySignature(plainText, signature, encodedPublicKey)
 
     fun generateRSAKey() = cryptoRSAV2Repository.generateKey()
     fun generateRSASignature(

@@ -4,8 +4,8 @@ import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESReposit
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESV2Repository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESV2RepositoryImpl
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25119Repository
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25119RepositoryImpl
+import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25519Repository
+import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25519RepositoryImpl
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepositoryImpl
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSAV2Repository
@@ -37,7 +37,7 @@ class CryptoModule {
     }
 
     @Provides
-    fun provideCryptoED25119Repository(): CryptoED25119Repository {
-        return CryptoED25119RepositoryImpl()
+    fun provideCryptoED25119Repository(): CryptoED25519Repository {
+        return CryptoED25519RepositoryImpl()
     }
 }
