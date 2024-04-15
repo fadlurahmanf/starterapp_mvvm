@@ -6,6 +6,7 @@ import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.AESMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
+import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.model.CryptoKey
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityExampleCryptoBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
@@ -86,6 +87,18 @@ class ExampleCryptoActivity :
             desc = "Verify RSA Signature ",
             enum = "VERIFY_RSA_SIGNATURE"
         ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Encrypt RSA",
+            desc = "Encrypt RSA ",
+            enum = "ENCRYPT_RSA"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Decrypt RSA",
+            desc = "Decrypt RSA ",
+            enum = "DECRYPT_RSA"
+        ),
     )
 
     override fun onBaseExampleInjectActivity() {
@@ -111,6 +124,7 @@ class ExampleCryptoActivity :
     lateinit var ed25519Signature: String
     lateinit var rsaKey: CryptoKey
     lateinit var rsaSignature: String
+    lateinit var rsaEncrypted: String
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
             "GENERATE_AES_KEY" -> {
@@ -119,7 +133,7 @@ class ExampleCryptoActivity :
             }
 
             "ENCRYPT_AES_CBC_ISO10126Padding" -> {
-                val result = viewModel.encrypt(
+                val result = viewModel.encryptAES(
                     aesEncodedKey,
                     "TES_VALUE_ENCRYPT_AES",
                     AESMethod.AES_CBC_ISO10126Padding
@@ -131,7 +145,7 @@ class ExampleCryptoActivity :
             }
 
             "DECRYPT_AES_CBC_ISO10126Padding" -> {
-                val result = viewModel.decrypt(
+                val result = viewModel.decryptAES(
                     aesEncodedKey,
                     aesEncryptedValue,
                     AESMethod.AES_CBC_ISO10126Padding
@@ -140,7 +154,7 @@ class ExampleCryptoActivity :
             }
 
             "ENCRYPT_AES_GCM_NoPadding" -> {
-                val result = viewModel.encrypt(
+                val result = viewModel.encryptAES(
                     aesEncodedKey,
                     "TES_VALUE_ENCRYPT_AES",
                     AESMethod.AES_GCM_NoPadding
@@ -152,7 +166,7 @@ class ExampleCryptoActivity :
             }
 
             "DECRYPT_AES_GCM_NoPadding" -> {
-                val result = viewModel.decrypt(
+                val result = viewModel.decryptAES(
                     aesEncodedKey,
                     aesEncryptedValue,
                     AESMethod.AES_GCM_NoPadding
@@ -205,7 +219,7 @@ class ExampleCryptoActivity :
                 val signature = viewModel.generateRSASignature(
                     encodedPrivateKey = rsaKey.privateKey,
                     plainText = "TES_SIGNATURE_RSA",
-                    method = RSAMethod.SHA1withRSA,
+                    method = RSASignatureMethod.SHA1withRSA,
                 )
                 Log.d(AppConstant.LOGGER_TAG, "RSA Signature: $signature")
                 if (signature != null) {
@@ -220,10 +234,31 @@ class ExampleCryptoActivity :
                             encodedPublicKey = rsaKey.publicKey,
                             plainText = "TES_SIGNATURE_RSA",
                             signature = rsaSignature,
-                            method = RSAMethod.SHA1withRSA,
+                            method = RSASignatureMethod.SHA1withRSA,
                         )
                     }"
                 )
+            }
+
+            "ENCRYPT_RSA" -> {
+                val result = viewModel.encryptRSA(
+                    publicKey = rsaKey.publicKey,
+                    "Test Test RSA",
+                    RSAMethod.RSA_ECB_OAEPPadding
+                )
+                Log.d(AppConstant.LOGGER_TAG, "encrypted RSA: $result")
+                if (result != null) {
+                    rsaEncrypted = result
+                }
+            }
+
+            "DECRYPT_RSA" -> {
+                val result = viewModel.decryptRSA(
+                    privateKey = rsaKey.privateKey,
+                    rsaEncrypted,
+                    RSAMethod.RSA_ECB_OAEPPadding
+                )
+                Log.d(AppConstant.LOGGER_TAG, "decrypted RSA: $result")
             }
         }
     }

@@ -1,9 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.crypto.data.enums
 
 enum class RSAMethod {
-    MD5withRSA,
-    SHA1withRSA,
-    SHA256withRSA,
-    SHA384withRSA,
-    SHA512withRSA
+    RSA_ECB_NoPadding,
+    RSA_ECB_OAEPPadding,
+    RSA_ECB_PKCS1Padding,
 }

@@ -3,6 +3,7 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.AESMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
+import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESV2Repository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoED25119Repository
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSAV2Repository
@@ -15,10 +16,10 @@ class CryptoViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     fun generateAESKey() = cryptoAESV2Repository.generateKey()
-    fun encrypt(key: String, plainText: String, method: AESMethod) =
+    fun encryptAES(key: String, plainText: String, method: AESMethod) =
         cryptoAESV2Repository.encrypt(key, plainText, method)
 
-    fun decrypt(key: String, encryptedText: String, method: AESMethod) =
+    fun decryptAES(key: String, encryptedText: String, method: AESMethod) =
         cryptoAESV2Repository.decrypt(key, encryptedText, method)
 
     fun generateEd25119Key() = cryptoED25119Repository.generateKey()
@@ -29,14 +30,32 @@ class CryptoViewModel @Inject constructor(
         cryptoED25119Repository.verifySignature(plainText, signature, encodedPublicKey)
 
     fun generateRSAKey() = cryptoRSAV2Repository.generateKey()
-    fun generateRSASignature(encodedPrivateKey: String, plainText: String, method: RSAMethod) =
+    fun generateRSASignature(
+        encodedPrivateKey: String,
+        plainText: String,
+        method: RSASignatureMethod
+    ) =
         cryptoRSAV2Repository.generateSignature(encodedPrivateKey, plainText, method)
 
     fun verifyRSASignature(
         encodedPublicKey: String,
         signature: String,
         plainText: String,
-        method: RSAMethod
+        method: RSASignatureMethod
     ) =
         cryptoRSAV2Repository.verifySignature(encodedPublicKey, signature, plainText, method)
+
+    fun encryptRSA(publicKey: String, plainText: String, method: RSAMethod) =
+        cryptoRSAV2Repository.encrypt(
+            encodedPublicKey = publicKey,
+            plainText = plainText,
+            method = method
+        )
+
+    fun decryptRSA(privateKey: String, encryptedText: String, method: RSAMethod) =
+        cryptoRSAV2Repository.decrypt(
+            encodedPrivateKey = privateKey,
+            encryptedText = encryptedText,
+            method = method
+        )
 }

@@ -3,13 +3,17 @@ package com.fadlurahmanf.starterappmvvm.crypto.data.repositories
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
+import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.model.CryptoKey
 import com.fadlurahmanf.starterappmvvm.crypto.others.BaseCryptoV2
+import org.bouncycastle.jcajce.provider.asymmetric.X509
 import java.security.KeyFactory
 import java.security.KeyPairGenerator
 import java.security.Signature
 import java.security.spec.PKCS8EncodedKeySpec
+import java.security.spec.RSAPublicKeySpec
 import java.security.spec.X509EncodedKeySpec
+import javax.crypto.Cipher
 
 class CryptoRSAV2RepositoryImpl : BaseCryptoV2(), CryptoRSAV2Repository {
     override fun generateKey(): CryptoKey {
@@ -24,7 +28,7 @@ class CryptoRSAV2RepositoryImpl : BaseCryptoV2(), CryptoRSAV2Repository {
     override fun generateSignature(
         encodedPrivateKey: String,
         plainText: String,
-        method: RSAMethod,
+        method: RSASignatureMethod,
     ): String? {
         return try {
             val privateKeySpec = PKCS8EncodedKeySpec(decode(encodedPrivateKey))
@@ -43,7 +47,7 @@ class CryptoRSAV2RepositoryImpl : BaseCryptoV2(), CryptoRSAV2Repository {
         encodedPublicKey: String,
         encodedSignature: String,
         plainText: String,
-        method: RSAMethod,
+        method: RSASignatureMethod,
     ): Boolean {
         return try {
             val publicKeySpec = X509EncodedKeySpec(decode(encodedPublicKey))
@@ -56,6 +60,37 @@ class CryptoRSAV2RepositoryImpl : BaseCryptoV2(), CryptoRSAV2Repository {
         } catch (e: Throwable) {
             Log.e(AppConstant.LOGGER_TAG, "failed verifySignature: ${e.message}")
             false
+        }
+    }
+
+    override fun encrypt(encodedPublicKey: String, plainText: String, method: RSAMethod): String? {
+        return try {
+            val cipher = Cipher.getInstance(getRSATransformationBasedOnFlow(method))
+            val publicKeySpec = X509EncodedKeySpec(decode(encodedPublicKey))
+            val publicKey = KeyFactory.getInstance("RSA").generatePublic(publicKeySpec)
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey)
+            val encryptedByteArray = cipher.doFinal(plainText.toByteArray())
+            encode(encryptedByteArray)
+        } catch (e: Throwable) {
+            Log.e(AppConstant.LOGGER_TAG, "failed encrypt: ${e.message}")
+            null
+        }
+    }
+
+    override fun decrypt(
+        encodedPrivateKey: String,
+        encryptedText: String,
+        method: RSAMethod
+    ): String? {
+        return try {
+            val cipher = Cipher.getInstance(getRSATransformationBasedOnFlow(method))
+            val privateKeySpec = PKCS8EncodedKeySpec(decode(encodedPrivateKey))
+            val privateKey = KeyFactory.getInstance("RSA").generatePrivate(privateKeySpec)
+            cipher.init(Cipher.DECRYPT_MODE, privateKey)
+            String(cipher.doFinal(decode(encryptedText)))
+        } catch (e: Throwable) {
+            Log.e(AppConstant.LOGGER_TAG, "failed decrypt: ${e.message}")
+            null
         }
     }
 }

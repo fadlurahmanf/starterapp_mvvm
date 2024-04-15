@@ -4,6 +4,8 @@ import android.util.Base64
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.AESMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
 import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod.*
+import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
+import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod.*
 
 abstract class BaseCryptoV2 {
 
@@ -26,13 +28,21 @@ abstract class BaseCryptoV2 {
         }
     }
 
-    fun getRSASignatureAlgorithmBasedOnFlow(method: RSAMethod): String {
+    fun getRSASignatureAlgorithmBasedOnFlow(method: RSASignatureMethod): String {
         return when (method) {
             MD5withRSA -> "MD5withRSA"
             SHA1withRSA -> "SHA1withRSA"
             SHA256withRSA -> "SHA256withRSA"
             SHA384withRSA -> "SHA384withRSA"
             SHA512withRSA -> "SHA512withRSA"
+        }
+    }
+
+    fun getRSATransformationBasedOnFlow(method:RSAMethod):String{
+        return when(method){
+            RSA_ECB_NoPadding -> "RSA/ECB/NoPadding"
+            RSA_ECB_OAEPPadding -> "RSA/ECB/OAEPPadding"
+            RSA_ECB_PKCS1Padding -> "RSA/ECB/PKCS1Padding"
         }
     }
 }
