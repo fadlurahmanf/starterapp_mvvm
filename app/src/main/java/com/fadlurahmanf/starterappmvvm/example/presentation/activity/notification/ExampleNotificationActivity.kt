@@ -25,12 +25,6 @@ class ExampleNotificationActivity :
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Notification Permission Status",
-            desc = "Check whether permission status of notification is granted",
-            enum = "IS_PERMISSION_NOTIFICATION_GRANTED"
-        ),
-        FeatureModel(
-            featureIcon = R.drawable.baseline_developer_mode_24,
             title = "Ask notification permission",
             desc = "Ask notification permission",
             enum = "ASK_NOTIFICATION_PERMISSION"
@@ -43,20 +37,21 @@ class ExampleNotificationActivity :
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Show notification 2",
-            desc = "Show simple notification type detail",
-            enum = "SHOW_NOTIFICATION_2"
-        ),
-        FeatureModel(
-            featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Show Chat Notification",
-            desc = "Show chat notification with different sound",
-            enum = "SHOW_NOTIFICATION_3"
-        ), FeatureModel(
-            featureIcon = R.drawable.baseline_developer_mode_24,
             title = "Show Image Notification",
             desc = "Show notification with image",
             enum = "SHOW_IMAGE_NOTIFICATION"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show Custom Sound Notification",
+            desc = "Show notification with custom sound",
+            enum = "SHOW_NOTIFICATION_WITH_CUSTOM_SOUND"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show Grouped Notification",
+            desc = "Show notification grouped",
+            enum = "SHOW_GROUPED_NOTIFICATION"
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
@@ -81,7 +76,7 @@ class ExampleNotificationActivity :
             title = "Stop Notification Player",
             desc = "Stop ringing incoming call notification",
             enum = "STOP_NOTIFICATION_INCOMING_CALL_PLAYER"
-        )
+        ),
     )
 
     private lateinit var adapter: ListExampleAdapter
@@ -113,52 +108,29 @@ class ExampleNotificationActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
-            "IS_PERMISSION_NOTIFICATION_GRANTED" -> {
-                val isGranted = viewModel.checkIsPermissionGranted(this)
-                Log.d(AppConstant.LOGGER_TAG, "IS NOTIFICATION GRANTED: $isGranted")
-            }
-
             "ASK_NOTIFICATION_PERMISSION" -> {
                 viewModel.askNotificationPermission(
                     this,
                     onShouldShowRequestPermissionRationale = {
-                        Log.d(AppConstant.LOGGER_TAG, "ASK NOTIFICATION PERMISSION")
+                        Log.d(AppConstant.LOGGER_TAG, "onShouldShowRequestPermissionRationale")
                     },
-                    onCompleteCheckPermission = { isGranted, statusPermission ->
-                        Log.d(AppConstant.LOGGER_TAG, "IS NOTIFICATION PERMISSION GRANTED: $isGranted, STATUS PERMISSION: $statusPermission")
+                    onCompleteCheckPermission = { isGranted, result ->
+                        Log.d(
+                            AppConstant.LOGGER_TAG,
+                            "IS NOTIFICATION GRANTED: $isGranted, RESULT: $result"
+                        )
                     },
                 )
             }
 
             "SHOW_NOTIFICATION" -> {
                 val randomInt = Random.nextInt(99)
-                viewModel.showSimpleNotification(
+                viewModel.showNotification(
                     this,
                     randomInt,
                     "Random Title General 1 $randomInt",
                     "Random Message General 1 $randomInt",
                     ExampleNotificationUtility.getPendingIntentNotificationDetail(this, randomInt)
-                )
-            }
-
-            "SHOW_NOTIFICATION_2" -> {
-                val randomInt = Random.nextInt(99)
-                viewModel.showSimpleNotification(
-                    this,
-                    randomInt,
-                    "Random Title Detail 2 $randomInt",
-                    "Random Message Detail 2 $randomInt",
-                    ExampleNotificationUtility.getPendingIntentNotificationDetail(this, randomInt)
-                )
-            }
-
-            "SHOW_NOTIFICATION_3" -> {
-                val randomInt = Random.nextInt(99)
-                viewModel.showChatNotification(
-                    this,
-                    randomInt,
-                    "Random Title Chat $randomInt",
-                    "Random Message Chat $randomInt",
                 )
             }
 
@@ -170,6 +142,23 @@ class ExampleNotificationActivity :
                     "Random Title Image $randomInt",
                     "Random Message Image $randomInt",
                     "https://raw.githubusercontent.com/TutorialsBuzz/cdn/main/android.jpg"
+                )
+            }
+
+            "SHOW_NOTIFICATION_WITH_CUSTOM_SOUND" -> {
+                val randomInt = Random.nextInt(99)
+                viewModel.showCustomSoundNotification(
+                    this,
+                    randomInt,
+                    "Random Title Chat $randomInt",
+                    "Random Message Chat $randomInt",
+                )
+            }
+
+            "SHOW_GROUPED_NOTIFICATION" -> {
+                viewModel.showGroupedNotification(
+                    this,
+                    3,
                 )
             }
 

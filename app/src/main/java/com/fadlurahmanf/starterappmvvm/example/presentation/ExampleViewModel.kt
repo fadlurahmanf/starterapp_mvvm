@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepository
 import com.fadlurahmanf.starterappmvvm.example.data.model.FirstLaunchModel
-import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleUseCases
+import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleUseCase
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
 import com.fadlurahmanf.starterappmvvm.core.state.AppState
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
@@ -16,14 +16,14 @@ import javax.inject.Inject
 class ExampleViewModel @Inject constructor(
     private val platformRepository: PlatformRepository,
     private val aesCryptoRepository: CryptoAESRepository,
-    private val exampleUseCases: ExampleUseCases,
+    private val exampleUseCase: ExampleUseCase,
 ) : BaseViewModel() {
 
     private val _firstLaunchState = MutableLiveData<AppState<FirstLaunchModel>>()
     val firstLaunchState: LiveData<AppState<FirstLaunchModel>> = _firstLaunchState
     fun initializeFirstLaunch(context: Context) {
         _firstLaunchState.value = AppState.LOADING
-        baseDisposable.add(exampleUseCases.initializeFirstLaunch(context)
+        baseDisposable.add(exampleUseCase.initializeFirstLaunch(context)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

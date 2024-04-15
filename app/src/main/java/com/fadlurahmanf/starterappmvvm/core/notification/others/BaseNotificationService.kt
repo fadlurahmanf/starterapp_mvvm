@@ -6,6 +6,7 @@ import android.content.Context
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
+import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
 
@@ -13,12 +14,6 @@ abstract class BaseNotificationService {
     private lateinit var notificationManager: NotificationManager
 
     companion object {
-        const val GENERAL_CHANNEL_ID = "GENERAL"
-        const val GENERAL_CHANNEL_NAME = "Umum"
-        const val GENERAL_CHANNEL_DESCRIPTION = "Notifikasi Umum"
-        const val CHAT_CHANNEL_ID = "CHAT"
-        const val CHAT_CHANNEL_NAME = "Percakapan"
-        const val CHAT_CHANNEL_DESCRIPTION = "Percakapan"
         const val VOIP_CHANNEL_ID = "VOIP"
         const val VOIP_CHANNEL_NAME = "Panggilan"
         const val VOIP_CHANNEL_DESCRIPTION = "Panggilan"
@@ -33,55 +28,6 @@ abstract class BaseNotificationService {
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         }
         return notificationManager
-    }
-
-    fun createGeneralNotificationChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val allChannels = getNotificationManager(context).notificationChannels
-            var generalChannel: NotificationChannel? = null
-            for (element in allChannels) {
-                if (element.id == GENERAL_CHANNEL_ID) {
-                    generalChannel = element
-                    break
-                }
-            }
-            if (generalChannel != null) return
-            val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            val channel = NotificationChannel(
-                GENERAL_CHANNEL_ID,
-                GENERAL_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            ).apply {
-                this.description = GENERAL_CHANNEL_DESCRIPTION
-                setSound(soundUri, null)
-            }
-            getNotificationManager(context).createNotificationChannel(channel)
-        }
-    }
-
-    fun createChatNotificationChannel(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val allChannels = getNotificationManager(context).notificationChannels
-            var chatChannel: NotificationChannel? = null
-            for (element in allChannels) {
-                if (element.id == CHAT_CHANNEL_ID) {
-                    chatChannel = element
-                    break
-                }
-            }
-            if (chatChannel != null) return
-            val uriSound =
-                Uri.parse("android.resource://" + context.packageName + "/" + R.raw.pop_up_alert_notification)
-            val channel = NotificationChannel(
-                CHAT_CHANNEL_ID,
-                CHAT_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_HIGH
-            ).apply {
-                this.description = CHAT_CHANNEL_DESCRIPTION
-                setSound(uriSound, null)
-            }
-            getNotificationManager(context).createNotificationChannel(channel)
-        }
     }
 
     fun createVoipNotificationChannel(context: Context) {
@@ -130,6 +76,10 @@ abstract class BaseNotificationService {
         }
     }
 
+    @Deprecated(
+        "deprecated because it is hardcoded small icon",
+        replaceWith = ReplaceWith("notificationBuilderV2")
+    )
     fun notificationBuilder(
         context: Context,
         channelId: String
@@ -138,5 +88,43 @@ abstract class BaseNotificationService {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
             .setSmallIcon(R.drawable.il_logo_bankmas) // TODO(DEV): Change Small Icon
+    }
+
+    fun notificationBuilderV2(
+        context: Context,
+        channelId: String,
+        @DrawableRes smallIcon: Int,
+    ): NotificationCompat.Builder {
+        return NotificationCompat.Builder(context, channelId)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setSmallIcon(smallIcon)
+    }
+
+    fun groupNotificationBuilder(
+        context: Context,
+        channelId: String,
+        groupKey: String,
+        bigContentTitle: String,
+        summaryText: String,
+        lines: List<String>,
+        @DrawableRes smallIcon: Int,
+    ): NotificationCompat.Builder {
+        val builder = NotificationCompat.Builder(context, channelId)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setSmallIcon(smallIcon)
+
+        val inboxStyle = NotificationCompat.InboxStyle()
+        if (lines.isNotEmpty()) {
+            for (element in lines) {
+                inboxStyle.addLine(element)
+            }
+            inboxStyle.setBigContentTitle(bigContentTitle)
+                .setSummaryText(summaryText)
+        }
+        return builder.setStyle(inboxStyle)
+            .setGroup(groupKey)
+            .setGroupSummary(true)
     }
 }

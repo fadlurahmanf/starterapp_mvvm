@@ -1,19 +1,22 @@
 package com.fadlurahmanf.starterappmvvm.example.domain.usecases
 
+import android.app.Activity
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.starterappmvvm.example.data.model.FirstLaunchModel
+import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleStorageRepository
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
 import com.fadlurahmanf.starterappmvvm.storage.data.entities.AppExampleEntity
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-open class ExampleUseCasesImpl @Inject constructor(
+open class ExampleUseCaseImpl @Inject constructor(
+    private val exampleNotificationRepository: ExampleNotificationRepository,
     private val exampleStorageRepository: ExampleStorageRepository,
     private val platformRepository: PlatformRepository,
     private val rsaRepository: CryptoRSARepository,
-) : ExampleUseCases {
+) : ExampleUseCase {
 
     override fun initializeFirstLaunch(context: Context): Observable<FirstLaunchModel> {
         return exampleStorageRepository.getExistingAppExampleEntity().toObservable()
@@ -55,4 +58,14 @@ open class ExampleUseCasesImpl @Inject constructor(
 
     override fun getDecryptedString(key: String): String? =
         exampleStorageRepository.getDecryptedString(key, null)
+
+    override fun askNotificationPermission(
+        activity: Activity,
+        onShouldShowRequestPermissionRationale: () -> Unit,
+        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
+    ) = exampleNotificationRepository.askNotificationPermission(
+        activity = activity,
+        onShouldShowRequestPermissionRationale = onShouldShowRequestPermissionRationale,
+        onCompleteCheckPermission = onCompleteCheckPermission,
+    )
 }

@@ -4,15 +4,18 @@ import android.util.Log
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepositoryImpl
+import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepositoryImpl
+import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
+import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepositoryImpl
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
 
 class FCMService : FirebaseMessagingService() {
-    private lateinit var notificationRepository: NotificationRepository
     private lateinit var callNotificationRepository: CallNotificationRepository
+    private lateinit var exampleNotificationRepository: ExampleNotificationRepository
+    private lateinit var notificationRepository: NotificationRepository
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d(AppConstant.LOGGER_TAG, "NEW FIREBASE TOKEN: $token")
@@ -23,6 +26,10 @@ class FCMService : FirebaseMessagingService() {
         Log.d(AppConstant.LOGGER_TAG, "NOTIFICATION: ${message.notification}")
         if (!this::notificationRepository.isInitialized) {
             notificationRepository = NotificationRepositoryImpl()
+        }
+        if (!this::exampleNotificationRepository.isInitialized) {
+            exampleNotificationRepository =
+                ExampleNotificationRepositoryImpl(notificationRepository)
         }
 
         if (!this::callNotificationRepository.isInitialized) {
@@ -36,12 +43,12 @@ class FCMService : FirebaseMessagingService() {
                 val title = message.data["title"]
                 val body = message.data["body"]
                 if (title != null && body != null) {
-                    notificationRepository.showNotification(
+                    exampleNotificationRepository.showNotification(
                         applicationContext,
                         notificationId,
-                        title,
-                        body,
-                        null
+                        title = title,
+                        message = body,
+                        pendingIntent = null,
                     )
                 }
             }

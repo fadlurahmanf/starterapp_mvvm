@@ -1,47 +1,43 @@
 package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import javax.inject.Inject
 
 class ExampleNotificationViewModel @Inject constructor(
-    private val notificationRepository: NotificationRepository,
     private val callNotificationRepository: CallNotificationRepository,
+    private val exampleNotificationRepository: ExampleNotificationRepository,
+    private val notificationRepository: NotificationRepository,
 ) : BaseViewModel() {
-
-    fun checkIsPermissionGranted(context: Context) =
-        notificationRepository.areNotificationEnabledAndGranted(context)
 
     fun askNotificationPermission(
         activity: ExampleNotificationActivity,
         onShouldShowRequestPermissionRationale: () -> Unit,
         onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
-    ) = notificationRepository.askNotificationPermission(
+    ) = exampleNotificationRepository.askNotificationPermission(
         activity,
         onShouldShowRequestPermissionRationale,
         onCompleteCheckPermission
     )
 
-    fun showSimpleNotification(
+    fun showNotification(
         context: Context,
         id: Int,
         title: String,
         message: String,
         pendingIntent: PendingIntent
     ) =
-        notificationRepository.showNotification(context, id, title, message, pendingIntent)
-
-    fun showChatNotification(
-        context: Context,
-        id: Int,
-        title: String,
-        message: String
-    ) =
-        notificationRepository.showChatNotification(context, id, title, message, null)
+        exampleNotificationRepository.showNotification(
+            context,
+            id,
+            title = title,
+            message = message,
+            pendingIntent = pendingIntent,
+        )
 
     fun showImageNotification(
         context: Context,
@@ -50,7 +46,31 @@ class ExampleNotificationViewModel @Inject constructor(
         message: String,
         imageUrl: String,
     ) =
-        notificationRepository.showImageNotification(context, id, title, message, imageUrl)
+        exampleNotificationRepository.showImageNotification(
+            context,
+            id,
+            title = title,
+            message = message,
+            networkImage = imageUrl,
+        )
+
+    fun showCustomSoundNotification(
+        context: Context,
+        id: Int,
+        title: String,
+        message: String
+    ) = exampleNotificationRepository.showChatNotification(
+        context,
+        id = id,
+        title = title,
+        message = message,
+        pendingIntent = null,
+    )
+
+    fun showGroupedNotification(
+        context: Context,
+        id: Int,
+    ) = exampleNotificationRepository.showGroupedNotification(context, id = id)
 
     fun showIncomingCallNotification(
         context: Context,

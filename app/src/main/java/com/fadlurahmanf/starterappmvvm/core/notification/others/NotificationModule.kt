@@ -1,7 +1,7 @@
 package com.fadlurahmanf.starterappmvvm.core.notification.others
 
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.domain.NotificationRepositoryImpl
+import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepository
+import com.fadlurahmanf.starterappmvvm.core.notification.data.NotificationRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
