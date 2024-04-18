@@ -11,7 +11,6 @@ import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity
-import com.fadlurahmanf.starterappmvvm.example.presentation.activity.crypto.AesCryptoActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.music_player.MusicPlayerActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.notification.ExampleNotificationActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.storage.StorageActivity

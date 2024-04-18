@@ -1,24 +1,24 @@
 package com.fadlurahmanf.starterappmvvm.example.domain.usecases
 
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.starterappmvvm.example.data.model.FirstLaunchModel
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleStorageRepository
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
+import com.github.fadlurahmanfdev.core_crypto.data.repositories.CryptoRSARepository
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class ExampleUseCaseFakeImpl @Inject constructor(
-    private val exampleNotificationRepository: ExampleNotificationRepository,
-    private val exampleStorageRepository: ExampleStorageRepository,
+    exampleNotificationRepository: ExampleNotificationRepository,
+    exampleStorageRepository: ExampleStorageRepository,
     private val platformRepository: PlatformRepository,
-    private val rsaRepository: CryptoRSARepository,
+    cryptoRSARepository: CryptoRSARepository,
 ) : ExampleUseCaseImpl(
     exampleNotificationRepository,
     exampleStorageRepository,
     platformRepository,
-    rsaRepository
+    cryptoRSARepository
 ) {
 
     override fun initializeFirstLaunch(context: Context): Observable<FirstLaunchModel> {

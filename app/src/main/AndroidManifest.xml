@@ -49,9 +49,6 @@
             android:name=".example.presentation.activity.storage.StorageActivity"
             android:exported="false" />
         <activity
-            android:name=".example.presentation.activity.crypto.AesCryptoActivity"
-            android:exported="false" />
-        <activity
             android:name=".example.presentation.activity.crashlytics.FirebaseCrashlyticsActivity"
             android:exported="false" />
         <activity

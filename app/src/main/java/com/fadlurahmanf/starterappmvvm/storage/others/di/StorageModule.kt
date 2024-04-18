@@ -1,12 +1,12 @@
 package com.fadlurahmanf.starterappmvvm.storage.others.di
 
 import android.content.Context
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepository
-import com.fadlurahmanf.starterappmvvm.crypto.others.di.CryptoModule
+import com.fadlurahmanf.starterappmvvm.core.crypto.CryptoModule
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppExampleLocalDatasource
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppExampleLocalDatasourceImpl
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppSharedPrefLocalDatasource
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppSharedPrefLocalDatasourceImpl
+import com.github.fadlurahmanfdev.core_crypto.data.repositories.CryptoAESRepository
 import dagger.Module
 import dagger.Provides
 
@@ -21,8 +21,8 @@ class StorageModule {
     @Provides
     fun provideAppSharedPrefLocalDatasource(
         context: Context,
-        aesRepository: CryptoAESRepository
+        cryptoAESRepository: CryptoAESRepository
     ): AppSharedPrefLocalDatasource {
-        return AppSharedPrefLocalDatasourceImpl(context, aesRepository)
+        return AppSharedPrefLocalDatasourceImpl(context, cryptoAESRepository)
     }
 }

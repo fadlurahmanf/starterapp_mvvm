@@ -117,9 +117,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     implementation(libs.room.rxjava3)
 
-    // ed25519
-    implementation(libs.bcprov.jdk15on)
-
     implementation(libs.androidx.work.runtime.ktx)
 
     implementation(libs.glide)
@@ -127,4 +124,7 @@ dependencies {
 
     implementation("androidx.media:media:1.7.0")
     implementation(libs.androidx.media3.exoplayer)
+
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:core_crypto:0.1.0")
 }

@@ -2,7 +2,6 @@ package com.fadlurahmanf.starterappmvvm.example.others.di
 
 import com.fadlurahmanf.starterappmvvm.BuildConfig
 import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleStorageRepository
@@ -13,6 +12,7 @@ import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleUseCaseImp
 import com.fadlurahmanf.starterappmvvm.platform.data.repositories.PlatformRepository
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppExampleLocalDatasource
 import com.fadlurahmanf.starterappmvvm.storage.data.datasources.AppSharedPrefLocalDatasource
+import com.github.fadlurahmanfdev.core_crypto.data.repositories.CryptoRSARepository
 import dagger.Module
 import dagger.Provides
 
@@ -37,21 +37,21 @@ class ExampleModule {
         exampleNotificationRepository: ExampleNotificationRepository,
         exampleStorageRepository: ExampleStorageRepository,
         platformRepository: PlatformRepository,
-        rsaRepository: CryptoRSARepository,
+        cryptoRSARepository: CryptoRSARepository,
     ): ExampleUseCase {
         return when (BuildConfig.FLAVOR) {
             "fake" -> ExampleUseCaseFakeImpl(
                 exampleNotificationRepository,
                 exampleStorageRepository,
                 platformRepository,
-                rsaRepository
+                cryptoRSARepository
             )
 
             else -> ExampleUseCaseImpl(
                 exampleNotificationRepository,
                 exampleStorageRepository,
                 platformRepository,
-                rsaRepository,
+                cryptoRSARepository,
             )
         }
     }

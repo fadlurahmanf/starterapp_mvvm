@@ -4,12 +4,13 @@ import android.content.Context
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.BuildConfig
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.crypto.data.repositories.CryptoAESRepository
+import com.github.fadlurahmanfdev.core_crypto.data.enums.AESMethod
+import com.github.fadlurahmanfdev.core_crypto.data.repositories.CryptoAESRepository
 import javax.inject.Inject
 
 class AppSharedPrefLocalDatasourceImpl @Inject constructor(
     context: Context,
-    private val aesRepository: CryptoAESRepository,
+    private val cryptoAESRepository: CryptoAESRepository,
 ) : AppSharedPrefLocalDatasource {
     private val sharedPref by lazy {
         context.getSharedPreferences(
@@ -32,7 +33,7 @@ class AppSharedPrefLocalDatasourceImpl @Inject constructor(
 
     override fun saveStringEncrypted(key: String, value: String) {
         try {
-            val encryptedValue = aesRepository.encryptCBC(value, appSharedPrefKey)
+            val encryptedValue = cryptoAESRepository.encrypt(value, appSharedPrefKey, method = AESMethod.AES_GCM_NoPadding)
             if (encryptedValue != null) {
                 saveString(key, encryptedValue)
                 Log.d(AppConstant.LOGGER_TAG, "success saveStringEncrypted: $encryptedValue")
@@ -48,7 +49,7 @@ class AppSharedPrefLocalDatasourceImpl @Inject constructor(
         try {
             val encryptedValue = getString(key, null)
             if (encryptedValue != null) {
-                val decryptedValue = aesRepository.decryptCBC(encryptedValue, appSharedPrefKey)
+                val decryptedValue = cryptoAESRepository.decrypt(encryptedValue, appSharedPrefKey, method = AESMethod.AES_GCM_NoPadding)
                 if (decryptedValue != null) {
                     return decryptedValue
                 } else {
@@ -79,7 +80,7 @@ class AppSharedPrefLocalDatasourceImpl @Inject constructor(
     private fun getSharedPrefKey(): String {
         var key: String? = sharedPref.getString("sharedPrefKey", null)
         if (key == null) {
-            key = aesRepository.generateKey()
+            key = cryptoAESRepository.generateKey()
             saveString("sharedPrefKey", key)
         }
         return key

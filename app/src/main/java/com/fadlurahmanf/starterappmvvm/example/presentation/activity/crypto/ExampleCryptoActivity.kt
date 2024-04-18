@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.crypto.data.enums.AESMethod
-import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSAMethod
-import com.fadlurahmanf.starterappmvvm.crypto.data.enums.RSASignatureMethod
-import com.fadlurahmanf.starterappmvvm.crypto.data.model.CryptoKey
 import com.fadlurahmanf.starterappmvvm.databinding.ActivityExampleCryptoBinding
 import com.fadlurahmanf.starterappmvvm.example.data.model.FeatureModel
 import com.fadlurahmanf.starterappmvvm.example.presentation.BaseExampleActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.utilities.recycle_view.ListExampleAdapter
+import com.github.fadlurahmanfdev.core_crypto.data.enums.AESMethod
+import com.github.fadlurahmanfdev.core_crypto.data.enums.RSAMethod
+import com.github.fadlurahmanfdev.core_crypto.data.enums.RSASignatureMethod
+import com.github.fadlurahmanfdev.core_crypto.data.model.CryptoKey
 import javax.inject.Inject
 
 class ExampleCryptoActivity :
