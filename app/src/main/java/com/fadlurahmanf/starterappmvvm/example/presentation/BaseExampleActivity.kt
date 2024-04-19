@@ -3,7 +3,7 @@ package com.fadlurahmanf.starterappmvvm.example.presentation
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 import com.fadlurahmanf.starterappmvvm.BaseApp
-import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
+import com.fadlurahmanf.starterappmvvm.example.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseActivity
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.InflateActivity
 

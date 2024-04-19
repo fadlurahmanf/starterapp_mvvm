@@ -3,11 +3,11 @@ package com.fadlurahmanf.starterappmvvm.core.config.di.components
 import android.content.Context
 import com.fadlurahmanf.starterappmvvm.call.di.CallModule
 import com.fadlurahmanf.starterappmvvm.call.di.CallSubComponent
-import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleModule
-import com.fadlurahmanf.starterappmvvm.example.others.di.ExampleSubComponent
+import com.fadlurahmanf.starterappmvvm.example.ExampleModule
+import com.fadlurahmanf.starterappmvvm.example.ExampleSubComponent
 import com.fadlurahmanf.starterappmvvm.core.config.di.modules.NetworkModule
 import com.fadlurahmanf.starterappmvvm.core.crypto.CryptoModule
-import com.fadlurahmanf.starterappmvvm.core.notification.others.NotificationModule
+import com.fadlurahmanf.starterappmvvm.core.notification.NotificationModule
 import com.fadlurahmanf.starterappmvvm.platform.di.PlatformModule
 import com.fadlurahmanf.starterappmvvm.storage.others.di.StorageModule
 import dagger.BindsInstance

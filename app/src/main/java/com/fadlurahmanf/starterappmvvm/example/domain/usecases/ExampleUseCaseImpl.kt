@@ -58,14 +58,4 @@ open class ExampleUseCaseImpl @Inject constructor(
 
     override fun getDecryptedString(key: String): String? =
         exampleStorageRepository.getDecryptedString(key, null)
-
-    override fun askNotificationPermission(
-        activity: Activity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
-    ) = exampleNotificationRepository.askNotificationPermission(
-        activity = activity,
-        onShouldShowRequestPermissionRationale = onShouldShowRequestPermissionRationale,
-        onCompleteCheckPermission = onCompleteCheckPermission,
-    )
 }

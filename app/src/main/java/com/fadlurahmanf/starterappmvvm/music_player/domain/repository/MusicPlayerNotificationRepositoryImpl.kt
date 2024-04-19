@@ -9,8 +9,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.fadlurahmanf.starterappmvvm.R
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
 import com.fadlurahmanf.starterappmvvm.music_player.domain.receiver.MusicPlayerReceiver
+import com.github.fadlurahmanfdev.core_notification.others.BaseNotificationService
 
 class MusicPlayerNotificationRepositoryImpl : BaseNotificationService(),
     MusicPlayerNotificationRepository {
@@ -23,7 +23,7 @@ class MusicPlayerNotificationRepositoryImpl : BaseNotificationService(),
         duration: Long,
         position: Long,
     ): NotificationCompat.Builder {
-        createMediaNotificationChannel(context)
+//        createMediaNotificationChannel(context)
         val mediaSession = MediaSessionCompat(context, "MusicPlayerService")
         mediaSession.setPlaybackState(
             PlaybackStateCompat.Builder()
@@ -59,7 +59,7 @@ class MusicPlayerNotificationRepositoryImpl : BaseNotificationService(),
         val mediaStyle = androidx.media.app.NotificationCompat.MediaStyle()
             .setMediaSession(mediaSession.sessionToken)
             .setShowActionsInCompactView(0, 1, 2)
-        return NotificationCompat.Builder(context, MEDIA_CHANNEL_ID)
+        return NotificationCompat.Builder(context, "MEDIA_CHANNEL_ID")
             .setSmallIcon(R.drawable.il_logo_bankmas).setStyle(mediaStyle)
     }
 

@@ -127,4 +127,6 @@ dependencies {
 
     //noinspection UseTomlInstead
     implementation("com.github.fadlurahmanfdev:core_crypto:0.1.0")
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1")
 }

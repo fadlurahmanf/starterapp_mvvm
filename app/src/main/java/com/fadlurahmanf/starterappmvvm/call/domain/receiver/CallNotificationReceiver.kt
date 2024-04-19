@@ -8,8 +8,8 @@ import android.os.Build
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.call.presentation.CallActivity
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepositoryImpl
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepositoryImpl
 
 class CallNotificationReceiver : BroadcastReceiver() {
     private lateinit var notificationRepository: NotificationRepository

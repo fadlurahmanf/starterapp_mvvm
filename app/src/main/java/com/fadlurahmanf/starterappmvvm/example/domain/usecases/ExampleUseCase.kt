@@ -10,9 +10,4 @@ interface ExampleUseCase {
     fun saveEncryptedString(key: String, plainText: String)
     fun getEncryptedString(key: String): String?
     fun getDecryptedString(key: String): String?
-    fun askNotificationPermission(
-        activity: Activity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit,
-    )
 }

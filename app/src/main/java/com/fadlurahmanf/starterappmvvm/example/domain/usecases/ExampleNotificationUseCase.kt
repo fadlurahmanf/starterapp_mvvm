@@ -1,17 +1,13 @@
-package com.fadlurahmanf.starterappmvvm.example.data.repositories
+package com.fadlurahmanf.starterappmvvm.example.domain.usecases
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 
-interface ExampleNotificationRepository {
+interface ExampleNotificationUseCase {
     fun askNotificationPermission(
         context: Context,
-        onCompleteCheckPermission: (isGranted: Boolean) -> Unit,
+        onCompleteCheckPermission: (isGranted: Boolean) -> Unit
     )
-
-    fun createGeneralNotificationChannel(context: Context)
-    fun createChatNotificationChannel(context: Context)
 
     fun showNotification(
         context: Context,
@@ -30,17 +26,11 @@ interface ExampleNotificationRepository {
         pendingIntent: PendingIntent? = null,
     )
 
-    /** example for notification with sound */
-    fun showChatNotification(
+    fun showCustomSoundNotification(
         context: Context,
         id: Int,
         title: String,
         message: String,
-        pendingIntent: PendingIntent? = null
-    )
-
-    fun showGroupedNotification(
-        context: Context,
-        id: Int,
+        pendingIntent: PendingIntent? = null,
     )
 }

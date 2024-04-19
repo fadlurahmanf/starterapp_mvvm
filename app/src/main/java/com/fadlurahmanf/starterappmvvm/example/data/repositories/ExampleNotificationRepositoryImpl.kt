@@ -5,11 +5,13 @@ import android.app.PendingIntent
 import android.content.Context
 import android.media.RingtoneManager
 import android.net.Uri
+import android.util.Log
 import com.fadlurahmanf.starterappmvvm.BuildConfig
 import com.fadlurahmanf.starterappmvvm.R
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepositoryImpl
-import com.fadlurahmanf.starterappmvvm.core.notification.data.dto.model.ItemGroupedNotificationModel
+import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleNotificationUseCaseImpl
+import com.github.fadlurahmanfdev.core_notification.data.dto.model.ItemGroupedNotificationModel
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepositoryImpl
 import javax.inject.Inject
 
 class ExampleNotificationRepositoryImpl @Inject constructor(
@@ -26,7 +28,7 @@ class ExampleNotificationRepositoryImpl @Inject constructor(
             "Notifikasi Percakapan"
     }
 
-    private fun createGeneralNotificationChannel(context: Context) {
+    override fun createGeneralNotificationChannel(context: Context) {
         val sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         notificationRepository.createNotificationChannel(
             context,
@@ -37,13 +39,23 @@ class ExampleNotificationRepositoryImpl @Inject constructor(
         )
     }
 
+    override fun createChatNotificationChannel(context: Context) {
+        val sound =
+            Uri.parse("android.resource://" + context.packageName + "/" + R.raw.pop_up_alert_notification)
+        notificationRepository.createNotificationChannel(
+            context,
+            channelId = CHAT_CHANNEL_ID,
+            channelName = CHAT_CHANNEL_NAME,
+            channelDescription = CHAT_CHANNEL_DESCRIPTION,
+            sound = sound,
+        )
+    }
+
     override fun askNotificationPermission(
-        activity: Activity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit,
+        context: Context,
+        onCompleteCheckPermission: (isGranted: Boolean) -> Unit,
     ) = notificationRepository.askNotificationPermission(
-        activity = activity,
-        onShouldShowRequestPermissionRationale = onShouldShowRequestPermissionRationale,
+        context,
         onCompleteCheckPermission = onCompleteCheckPermission,
     )
 
@@ -54,16 +66,25 @@ class ExampleNotificationRepositoryImpl @Inject constructor(
         message: String,
         pendingIntent: PendingIntent?
     ) {
-        createGeneralNotificationChannel(context)
-        notificationRepository.showCustomNotification(
-            context,
-            id = id,
-            channelId = GENERAL_CHANNEL_ID,
-            title = title,
-            message = message,
-            smallIcon = R.drawable.il_logo_bankmas,
-            pendingIntent = pendingIntent,
-        )
+        askNotificationPermission(context, onCompleteCheckPermission = { isGranted ->
+            if (isGranted) {
+                createGeneralNotificationChannel(context)
+                notificationRepository.showCustomNotification(
+                    context,
+                    id = id,
+                    channelId = GENERAL_CHANNEL_ID,
+                    title = title,
+                    message = message,
+                    smallIcon = R.drawable.il_logo_bankmas,
+                    pendingIntent = pendingIntent,
+                )
+            } else {
+                Log.d(
+                    ExampleNotificationUseCaseImpl::class.java.simpleName,
+                    "disable to show notification because permission is not granted"
+                )
+            }
+        })
     }
 
     override fun showImageNotification(
@@ -74,15 +95,24 @@ class ExampleNotificationRepositoryImpl @Inject constructor(
         networkImage: String,
         pendingIntent: PendingIntent?
     ) {
-        createGeneralNotificationChannel(context)
-        notificationRepository.showGeneralImageNotification(
-            context,
-            id = id,
-            title = title,
-            message = message,
-            imageUrl = networkImage,
-            smallIcon = R.drawable.il_logo_bankmas,
-        )
+        askNotificationPermission(context, onCompleteCheckPermission = { isGranted ->
+            if (isGranted) {
+                createGeneralNotificationChannel(context)
+                notificationRepository.showGeneralImageNotification(
+                    context,
+                    id = id,
+                    title = title,
+                    message = message,
+                    imageUrl = networkImage,
+                    smallIcon = R.drawable.il_logo_bankmas,
+                )
+            } else {
+                Log.d(
+                    ExampleNotificationUseCaseImpl::class.java.simpleName,
+                    "disable to show image notification because permission is not granted"
+                )
+            }
+        })
     }
 
     override fun showChatNotification(
@@ -92,24 +122,24 @@ class ExampleNotificationRepositoryImpl @Inject constructor(
         message: String,
         pendingIntent: PendingIntent?
     ) {
-        val sound =
-            Uri.parse("android.resource://" + context.packageName + "/" + R.raw.pop_up_alert_notification)
-        notificationRepository.createNotificationChannel(
-            context,
-            channelId = CHAT_CHANNEL_ID,
-            channelName = CHAT_CHANNEL_NAME,
-            channelDescription = CHAT_CHANNEL_DESCRIPTION,
-            sound = sound,
-        )
-        notificationRepository.showCustomNotification(
-            context,
-            id = id,
-            channelId = CHAT_CHANNEL_ID,
-            title = title,
-            message = message,
-            smallIcon = R.drawable.il_logo_bankmas,
-            pendingIntent = pendingIntent,
-        )
+        askNotificationPermission(context, onCompleteCheckPermission = { isGranted ->
+            if (isGranted) {
+                createChatNotificationChannel(context)
+                notificationRepository.showCustomNotification(
+                    context,
+                    id = id,
+                    channelId = CHAT_CHANNEL_ID,
+                    title = title,
+                    message = message,
+                    smallIcon = R.drawable.il_logo_bankmas,
+                )
+            } else {
+                Log.d(
+                    ExampleNotificationUseCaseImpl::class.java.simpleName,
+                    "disable to show chat notification because permission is not granted"
+                )
+            }
+        })
     }
 
     override fun showGroupedNotification(

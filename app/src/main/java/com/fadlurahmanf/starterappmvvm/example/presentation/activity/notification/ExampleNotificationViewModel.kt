@@ -2,68 +2,57 @@ package com.fadlurahmanf.starterappmvvm.example.presentation.activity.notificati
 
 import android.app.PendingIntent
 import android.content.Context
+import android.util.Log
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.core.shared.layout.BaseViewModel
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
+import com.fadlurahmanf.starterappmvvm.example.domain.usecases.ExampleNotificationUseCase
 import javax.inject.Inject
 
 class ExampleNotificationViewModel @Inject constructor(
     private val callNotificationRepository: CallNotificationRepository,
     private val exampleNotificationRepository: ExampleNotificationRepository,
-    private val notificationRepository: NotificationRepository,
+    private val exampleNotificationUseCase: ExampleNotificationUseCase,
 ) : BaseViewModel() {
 
-    fun askNotificationPermission(
-        activity: ExampleNotificationActivity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
-    ) = exampleNotificationRepository.askNotificationPermission(
-        activity,
-        onShouldShowRequestPermissionRationale,
-        onCompleteCheckPermission
-    )
-
-    fun showNotification(
-        context: Context,
-        id: Int,
-        title: String,
-        message: String,
-        pendingIntent: PendingIntent
-    ) =
-        exampleNotificationRepository.showNotification(
+    fun askNotificationPermission(context: Context) =
+        exampleNotificationUseCase.askNotificationPermission(
             context,
-            id,
-            title = title,
-            message = message,
-            pendingIntent = pendingIntent,
+            onCompleteCheckPermission = { isGranted ->
+                Log.d(
+                    ExampleNotificationViewModel::class.java.simpleName,
+                    "IS NOTIFICATION PERMISSION GRANTED: $isGranted"
+                )
+            }
         )
+
+    fun showSimpleNotification(
+        context: Context
+    ) = exampleNotificationUseCase.showNotification(
+        context,
+        1,
+        title = "Simple Notification",
+        message = "This is a simple notification",
+        pendingIntent = null,
+    )
 
     fun showImageNotification(
         context: Context,
-        id: Int,
-        title: String,
-        message: String,
-        imageUrl: String,
-    ) =
-        exampleNotificationRepository.showImageNotification(
-            context,
-            id,
-            title = title,
-            message = message,
-            networkImage = imageUrl,
-        )
+    ) = exampleNotificationUseCase.showImageNotification(
+        context,
+        2,
+        title = "Image Notification",
+        message = "This is an image notification",
+        networkImage = "https://raw.githubusercontent.com/TutorialsBuzz/cdn/main/android.jpg",
+    )
 
     fun showCustomSoundNotification(
         context: Context,
-        id: Int,
-        title: String,
-        message: String
-    ) = exampleNotificationRepository.showChatNotification(
+    ) = exampleNotificationUseCase.showCustomSoundNotification(
         context,
-        id = id,
-        title = title,
-        message = message,
+        id = 3,
+        title = "Custom Sound Notification",
+        message = "This is a notification with custom sound",
         pendingIntent = null,
     )
 

@@ -31,7 +31,7 @@ class ExampleNotificationActivity :
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Show notification",
+            title = "Show Notification",
             desc = "Show simple notification type general",
             enum = "SHOW_NOTIFICATION"
         ),
@@ -45,7 +45,7 @@ class ExampleNotificationActivity :
             featureIcon = R.drawable.baseline_developer_mode_24,
             title = "Show Custom Sound Notification",
             desc = "Show notification with custom sound",
-            enum = "SHOW_NOTIFICATION_WITH_CUSTOM_SOUND"
+            enum = "SHOW_CUSTOM_SOUND_NOTIFICATION"
         ),
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
@@ -109,50 +109,19 @@ class ExampleNotificationActivity :
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
             "ASK_NOTIFICATION_PERMISSION" -> {
-                viewModel.askNotificationPermission(
-                    this,
-                    onShouldShowRequestPermissionRationale = {
-                        Log.d(AppConstant.LOGGER_TAG, "onShouldShowRequestPermissionRationale")
-                    },
-                    onCompleteCheckPermission = { isGranted, result ->
-                        Log.d(
-                            AppConstant.LOGGER_TAG,
-                            "IS NOTIFICATION GRANTED: $isGranted, RESULT: $result"
-                        )
-                    },
-                )
+                viewModel.askNotificationPermission(this)
             }
 
             "SHOW_NOTIFICATION" -> {
-                val randomInt = Random.nextInt(99)
-                viewModel.showNotification(
-                    this,
-                    randomInt,
-                    "Random Title General 1 $randomInt",
-                    "Random Message General 1 $randomInt",
-                    ExampleNotificationUtility.getPendingIntentNotificationDetail(this, randomInt)
-                )
+                viewModel.showSimpleNotification(this)
             }
 
             "SHOW_IMAGE_NOTIFICATION" -> {
-                val randomInt = Random.nextInt(99)
-                viewModel.showImageNotification(
-                    this,
-                    randomInt,
-                    "Random Title Image $randomInt",
-                    "Random Message Image $randomInt",
-                    "https://raw.githubusercontent.com/TutorialsBuzz/cdn/main/android.jpg"
-                )
+                viewModel.showImageNotification(this)
             }
 
-            "SHOW_NOTIFICATION_WITH_CUSTOM_SOUND" -> {
-                val randomInt = Random.nextInt(99)
-                viewModel.showCustomSoundNotification(
-                    this,
-                    randomInt,
-                    "Random Title Chat $randomInt",
-                    "Random Message Chat $randomInt",
-                )
+            "SHOW_CUSTOM_SOUND_NOTIFICATION" -> {
+                viewModel.showCustomSoundNotification(this)
             }
 
             "SHOW_GROUPED_NOTIFICATION" -> {

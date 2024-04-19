@@ -4,10 +4,10 @@ import android.util.Log
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepository
 import com.fadlurahmanf.starterappmvvm.call.domain.repository.CallNotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.core.shared.constant.AppConstant
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.starterappmvvm.core.notification.data.repositories.NotificationRepositoryImpl
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepository
 import com.fadlurahmanf.starterappmvvm.example.data.repositories.ExampleNotificationRepositoryImpl
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepositoryImpl
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random

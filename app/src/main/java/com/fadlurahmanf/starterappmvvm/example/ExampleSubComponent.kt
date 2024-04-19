@@ -1,4 +1,4 @@
-package com.fadlurahmanf.starterappmvvm.example.others.di
+package com.fadlurahmanf.starterappmvvm.example
 
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.biometric.BiometricActivity
 import com.fadlurahmanf.starterappmvvm.example.presentation.activity.api_call.ApiCallActivity
